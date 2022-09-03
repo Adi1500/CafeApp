@@ -1,0 +1,488 @@
+.accordion-menu--hidden {
+  display: none;
+}    
+.accordion-menu__list,
+.accordion-menu__sublist {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+.accordion-menu__list {
+  border-top: 1px #eee solid;
+}
+.accordion-menu__link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-decoration: none;
+  text-indent: 50px;
+  border: solid black 1px;
+  border-top: solid black 5px;
+  font-weight: bold;
+  color: black;
+  font-size: 70px;
+  height: 300px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.accordion-menu__icon {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  transition: .2s all;     
+}
+.accordion-menu__icon:before,
+.accordion-menu__icon:after {
+  content: "";
+  display: block;
+  background-color: rgb(51, 51, 51);
+  position: absolute;   
+  top: 50%; left: 0;
+  transition: .35s;
+  width: 100%;
+  height: 2px; 
+}
+.accordion-menu__icon:before {
+  transform: translateY(-50%);
+}
+.accordion-menu__icon:after {
+  transform: translateY(-50%) rotate(90deg);
+}
+.accordion-menu--active .accordion-menu__icon:before {
+  transform: translateY(-50%) rotate(-90deg);
+  opacity: 0;
+}
+.accordion-menu--active .accordion-menu__icon:after {
+  transform: translateY(-50%) rotate(0);
+}
+.accordion-menu__sublist {
+  margin-left: 1.25rem;
+}
+.accordion-menu__sublink {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-decoration: none;
+    text-indent: 50px;
+    border: solid black 1px;
+    font-weight: bold;
+    color: black;
+    font-size: 25px;
+    height: 150px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.accordion-menu-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 1rem;
+  overflow: scroll;
+}
+.accordion-menu-nav__link:not(:last-child) {
+  margin-right: 1rem;
+}
+.accordion-menu-wrapper {
+  display: none;
+}
+.accordion-menu-wrapper.active {
+  display: block;
+}
+.accordion-menu__link2 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-decoration: none;
+  text-indent: 50px;
+  border: solid black 1px;
+  font-weight: bold;
+  color: black;
+  font-size: 50px;
+  height: 200px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+@import url('https://fonts.googleapis.com/css?family=Raleway:300,400,700');
+@import url("https://fonts.googleapis.com/css?family=Metal+Mania");
+
+@font-face {
+    font-family: "Booter - Zero Zero";
+    src: url("Fonts/Booter - Zero Zero.woff") format("woff"),
+         url("Fonts/Booter - Zero Zero.woff2") format("woff2");
+    font-weight: normal;
+    font-style: normal;
+}
+
+.nav ul {
+    margin: 0;
+}
+
+.nav li {
+    display: inline;
+}
+
+.nav a {
+    display: inline-block;
+    padding: .5em;
+    color: white;
+    text-decoration: none;
+}
+
+.main-nav {
+    text-align: center;
+    font-size: 1.1em;
+    font-weight: lighter;
+    border-bottom: 1px solid rgba(255, 255, 255, .3)
+}
+
+.main-nav li {
+    padding: 0 5%;
+}
+
+.nav a:hover {
+    background-color: rgba(255, 255, 255, .3)
+}
+
+.main-header {
+    background-color: rgba(0, 0, 0, .6);
+    background-image: url("Images/Header Background.jpg");
+    background-blend-mode: multiply;
+    background-size: cover;
+    padding-bottom: 30px;
+}
+
+.band-name {
+    text-align: center;
+    margin: 0;
+    font-size: 4em;
+    font-family: "Booter - Zero Zero";
+    font-weight: normal;
+    color: white;
+}
+
+.band-name-large {
+    font-size: 8em;
+}
+
+.content-section {
+    margin: 1em;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1.5em;
+}
+.section-header {
+    font-family: "Metal Mania";
+    font-weight: normal;
+    color: #333;
+    text-align: center;
+    font-size: 2.5em;
+}
+
+.about-band-image {
+    float: left;
+    height: 200px;
+    width: 200px;
+    margin: 15px;
+    border-radius: 50%;
+}
+
+.main-footer {
+    background-color: #56CCF2;
+    color: white;
+    padding: .25em 0;
+}
+
+.main-footer-container {
+    display: flex;
+    align-items: center;
+}
+
+.main-footer-container ul {
+    flex-grow: 1;
+    text-align: end;
+}
+
+.footer-nav li {
+    padding: 0 .5em;
+}
+
+.footer-nav img {
+    width: 30px;
+    height: 30px;
+}
+
+.btn {
+    text-align: center;
+    vertical-align: middle;
+    padding: .67em .67em;
+    cursor: pointer;
+}
+
+.btn-header {
+    margin: .5em 15% 2em 15%;
+    color: white;
+    border: 2px solid #2D9CDB;
+    background-color: rgba(255, 255, 255, .1);
+    border-radius: 0;
+    font-size: 1.5em;
+    font-weight: lighter;
+    padding-left: 2em;
+    padding-right: 2em;
+}
+
+.btn-header:hover {
+    background-color: rgba(255, 255, 255, .3);
+}
+
+.btn-play {
+    display: block;
+    margin: 0 auto;
+    color: #2D9CDB;
+    font-size: 4em;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    padding: 0;
+    text-align: center;
+}
+
+.btn-primary {
+    color: white;
+    background-color: #56CCF2;
+    border: none;
+    border-radius: .3em;
+    font-weight: bold;
+}
+
+.btn-primary:hover {
+    background-color: #2D9CDB;
+}
+
+.tour-row {
+    border-bottom: 1px solid black;
+    padding-bottom: 1em;
+    margin-bottom: 1em;
+}
+
+.tour-row:last-child {
+    border: none;
+}
+
+.tour-item {
+    display: inline-block;
+    padding-right: .5em;
+}
+
+.tour-date {
+    color: #555;
+    width: 11%;
+    font-weight: bold;
+}
+
+.tour-city {
+    width: 24%;
+}
+
+.tour-arena {
+    width: 42%;
+}
+
+.tour-btn {
+    max-width: 19%;
+}
+
+.shop-item-title {
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.5em;
+    color: #333;
+    font-size: 23px;
+}
+
+.shop-item-image {
+    height: 250px;
+}
+
+.shop-item-details {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+}
+
+.shop-item-price {
+    flex-grow: 1;
+    color: #333;
+    font-size: 30px;
+}
+
+.shop-items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.cart-header {
+    font-weight: bold;
+    font-size: 1.25em;
+    color: #333;
+}
+
+.cart-column {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid black;
+    margin-right: 1.5em;
+    padding-bottom: 10px;
+    margin-top: 10px;
+}
+
+.cart-row {
+    display: flex;
+}
+
+.cart-item {
+    width: 35%;
+    font-size: 30px;
+}
+
+.cart-price {
+    width: 35%;
+    font-size: 30px;
+    color: #333;
+}
+
+.cart-quantity {
+    width: 35%;
+    font-size: 30px;
+}
+
+.cart-item-title {
+    color: #333;
+    margin-left: .5em;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.cart-item-image {
+    width: 75px;
+    height: auto;
+    border-radius: 10px;
+}
+
+.btn-danger {
+    font-size: 25px;
+    color: white;
+    background-color: #EB5757;
+    border: none;
+    border-radius: .3em;
+    font-weight: bold;
+    width: 150px;
+    height: 100px;
+}
+
+.btn-danger:hover {
+    background-color: #CC4C4C;
+}
+
+.cart-quantity-input {
+    height: 70px;
+    width: 100px;
+    border-radius: 5px;
+    border: 1px solid #56CCF2;
+    background-color: #eee;
+    color: #333;
+    padding: 0;
+    text-align: center;
+    font-size: 25px;
+    margin-right: 25px;
+}
+
+.cart-row:last-child {
+    border-bottom: 1px solid black;
+}
+
+.cart-row:last-child .cart-column {
+    border: none;
+}
+
+.cart-total {
+    text-align: end;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+.cart-total-title {
+    font-weight: bold;
+    font-size: 40px;
+    color: black;
+    margin-right: 20px;
+}
+
+.cart-total-price {
+    color: #333;
+    font-size: 35px;
+}
+
+.btn-purchase {
+    display: block;
+    margin: 40px auto 80px auto;
+    font-size: 45px;
+    width: 300px;
+    height: 150px;
+}
+
+.shop-item-button {
+    width: 130px;
+    height: 130px;
+    font-size: 25px;
+}
+
+.shop-item-subtext{
+    font-size: 15px;
+    max-width: 250px;
+    word-wrap: break-word;
+}
+
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+  }
+  
+  .flex-container > div {
+    width: 140px;
+    margin: 40px;
+    font-size: 15px;
+    overflow-wrap: normal;
+    padding-left: 5px;
+    overflow: hidden;
+    text-indent: 0px;
+    text-align: center;
+  }
+
+
+  
