@@ -42,7 +42,7 @@ function RenderingArrayOfObjects() {
             var total = (price * curValue.kolicina)
             // let ind = listOfLists.findIndex((n) => n === niz);
         
-            niz.push(<div>{curValue.kolicina}X {curValue.ime_narudzbe}.....{total.toFixed(2)} KM</div>);
+            niz.push(<div>{curValue.kolicina}X {curValue.ime_narudzbe}&nbsp;&nbsp;<span className='price-align'>{total.toFixed(2)} KM</span></div>);
 
             //console.log(niz);
         });

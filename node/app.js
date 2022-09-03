@@ -74,6 +74,7 @@ app.post('/', (req, res) => {
 
 app.post('/drop', (req, res) => {
     var sql = 'DELETE FROM narudzbe WHERE broj_stola="'+req.body.id+'";'
+    console.log(sql)
     con.query(sql, function(err, result){
         if(err) throw err
     });
