@@ -35,7 +35,7 @@ function Prozorcic() {
                 <button type="submit" className="btn">
                     Login
                 </button>
-                <button>onClick={closeForm}</button>
+                <button onClick={closeForm}></button>
             </form>
         </div>
     );
