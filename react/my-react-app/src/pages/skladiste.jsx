@@ -19,7 +19,9 @@ function Skl() {
         <div className="home">
             <div className="flex-container"></div>
 
-            <button onClick={openForm} text="DODAJ" />
+            <button className="addBtn button" onClick={openForm}>
+                DODAJ
+            </button>
             {components.map((item, i) => (
                 <Prozorcic />
             ))}

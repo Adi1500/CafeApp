@@ -76,10 +76,10 @@ body {
     background-color: rgba(255, 0, 0, 0.705);
     border-radius: 100px;
     border-color: #000;
-    position:relative; 
-    margin-left:-25px;
-    left:92%;
-  }
+    position: relative;
+    margin-left: -25px;
+    left: 92%;
+}
 
 .btn-close:hover {
     background-color: red;
@@ -90,7 +90,7 @@ body {
     margin-right: 3px;
 }
 
-.button {
+.addBtn {
     background-color: #e7e7e7;
     color: black;
     border: none;
