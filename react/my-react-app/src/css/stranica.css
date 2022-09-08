@@ -74,12 +74,11 @@ body {
     width: 50px;
     cursor: pointer;
     background-color: rgba(255, 0, 0, 0.705);
-    border-radius: 50px;
+    border-radius: 100px;
     border-color: #000;
     position:relative; 
     margin-left:-25px;
-    left:50%;
-    bottom:-20px;
+    left:92%;
   }
 
   .btn-close:hover{

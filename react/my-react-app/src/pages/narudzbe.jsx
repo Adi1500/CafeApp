@@ -52,16 +52,17 @@ function RenderingArrayOfObjects() {
 
     for(let i = 0; i < listOfLists.length; i++){
         buttonID[i] = listOfLists[i][0]
-        listOfLists[i][0] = <h1 style={{textAlign: "center"}}>{listOfLists[i][0]}</h1>
+        listOfLists[i][0] = <h1 style={{textAlign: "center"}}>Broj Stola: {listOfLists[i][0]}</h1>
     }
 
     for (var i = 0; i < listOfLists.length; i++) {
         indents.push(
             <div key={i}>
-                <div>{listOfLists[i]}</div>
                 <button onClick={deleteCard} className='btn-close' >
                     <IoIosClose size={45} id={buttonID[i]}/>
                 </button>
+                <div>{listOfLists[i]}</div>
+
             </div>);
     }
 
