@@ -36,3 +36,127 @@
     cursor: pointer;
     background-color: rgb(75, 71, 71);
 }
+
+.addBtn {
+    background-color: #e7e7e7;
+    color: black;
+    border: none;
+    position: absolute;
+    bottom: 7%;
+    left: 8%;
+
+    padding: 30px 50px;
+    text-decoration: none;
+    font-size: 30px;
+    border-radius: 12px;
+}
+.button:hover {
+    background-color: #b1b1b1; /* Green */
+    color: white;
+    border-color: #000;
+    cursor: pointer;
+}
+
+.prozorcic {
+    color: white;
+    font-size: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    background-color: darkblue;
+}
+/*  CSS ZA PROZORCIC KOPIRAN S INTERNETA
+    TREBA POPRAVIT
+    OVO SAM DODAO SAMO DA MOGU TESTIRAT JEL RADI POPUP
+*/
+/* The popup form - hidden by default */
+.form-popup {
+    display: none;
+    position: absolute;
+    left: 35%;
+    top: 7%;
+    border: 3px solid #f1f1f1;
+    width: 30%;
+    height: 80%;
+    z-index: 9;
+}
+
+/* Add styles to the form container */
+.form-container {
+    padding: 10px;
+    background-color: white;
+    height: 100%;
+    width: 100%;
+}
+
+/* Full-width input fields */
+.form-container input[type='text'],
+.form-container input[type='number'],
+.form-container input[type='password'],
+.form-container textarea,
+.form-container select {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    border: none;
+    background: #f1f1f1;
+}
+
+/* When the inputs get focus, do something */
+.form-container input[type='text']:focus,
+.form-container input[type='number']:focus,
+.form-container input[type='password']:focus {
+    background-color: #ddd;
+    outline: none;
+}
+
+/* Set a style for the submit/login button */
+.form-container .btn {
+    background-color: #04aa6d;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 10px;
+    opacity: 0.8;
+}
+
+/* Add a red background color to the cancel button */
+.form-container .cancel {
+    background-color: red;
+}
+
+/* Add some hover effects to buttons */
+.form-container .btn:hover,
+.open-button:hover {
+    opacity: 1;
+}
+
+#page-mask {
+    display:none;
+    background: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+
+.dltBtn {
+    background-color: #4caf50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    bottom: 20px;
+    right: 38%;
+    cursor: pointer;
+    position: absolute;
+}
+
+h1 {
+    margin-bottom: 20px;
+}

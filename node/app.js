@@ -81,5 +81,18 @@ app.post('/drop', (req, res) => {
     });
 });
 
+app.post('/storeData', (req, res) => {
+    var name = req.body.name
+    var price = req.body.price
+    var quantity = req.body.quantity
+    var description = req.body.description
+    var group = req.body.group
+    var sql = 'INSERT INTO skladiste (ime_proizvoda, kolicina_skladiste, cijena_skladiste, opis_skladiste, skupina) VALUES ("' + name + '", "' + quantity + '", "' + price + '", "' + description + '", "' + group + '")'
+    console.log(name, price, quantity, description)
+    con.query(sql, function (err, result) {
+        if (err) throw err;
+    });
+})
+
 // listen on port 3001
 app.listen(port, () => console.info(`listening on port ${port}`));

@@ -1,3 +1,4 @@
+import '../css/skladiste.css';
 import '../css/stranica.css';
 import React, { useState } from 'react';
 import { IoMdArrowDropdown } from 'react-icons/io';
@@ -7,24 +8,15 @@ import Prozorcic from './components/prozorcic.jsx';
 function Skl() {
     function openForm() {
         document.getElementById('myForm').style.display = 'block';
-    }
-
-    const [components, setComponents] = useState(['Sample Component']);
-
-    function addComponent() {
-        setComponents([...components, 'Sample Component']);
+        document.getElementById('page-mask').style.display = 'block';
     }
 
     return (
-        <div className="home">
-            <div className="flex-container"></div>
+        <div className="home" id='a'>
+            <button className="plus-button" onClick={openForm}></button>     
+            <div id="page-mask"></div>
+            <Prozorcic />
 
-            <button className="addBtn button" onClick={openForm}>
-                DODAJ
-            </button>
-            {components.map((item, i) => (
-                <Prozorcic />
-            ))}
         </div>
     );
 }
