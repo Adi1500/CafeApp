@@ -42,6 +42,7 @@ app.get('/skladiste', (req, res) => {
     res.render('skladiste', { text: 'about page' });
 });
 
+//request za narudzbe.jsx, kartice
 app.get('/orders', (req, res) => {
     var sql = 'SELECT * FROM narudzbe';
     con.query(sql, function (err, result) {
@@ -52,7 +53,19 @@ app.get('/orders', (req, res) => {
     });
 });
 
+//request za skladiste.jsx, sta ce izbacit na onom bloku
+app.get('/storage', (req, res) => {
+    var title = req.query.title
+    var sql = 'SELECT * FROM skladiste WHERE skupina="'+title+'"'
+    con.query(sql, function(err, result) {
+        if (err) throw err;
+        else res.send(result)
+    })
+
+})
+
 // mysql
+// gostijs.js posalje u bazu narudzbe od gostiju
 app.post('/', (req, res) => {
     for (var i = 0; i < req.body.naslov.length; i++) {
         console.log(req.body.naslov.length);
@@ -73,6 +86,7 @@ app.post('/', (req, res) => {
     res.redirect('back');
 });
 
+// narudzbe.jsx, ukloni narudzbu tj. karticu
 app.post('/drop', (req, res) => {
     var sql = 'DELETE FROM narudzbe WHERE broj_stola="' + req.body.id + '";';
     console.log(sql);
@@ -81,6 +95,7 @@ app.post('/drop', (req, res) => {
     });
 });
 
+// prozorcic.jsx, posalje u bazu novi proizvod
 app.post('/storeData', (req, res) => {
     var name = req.body.name
     var price = req.body.price

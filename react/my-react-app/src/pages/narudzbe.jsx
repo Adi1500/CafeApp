@@ -5,7 +5,11 @@ import { useEffect } from 'react';
 import { IoIosClose } from 'react-icons/io';
 
 function deleteCard(e) {
-    axios.post('http://localhost:3001/drop', { id: e.target.id });
+    //upit za potvrdu ako slucajno klikne da obrise
+    var answer = window.confirm("Da li želite ukloniti ovu narudžbu?");
+    if (answer) {
+        axios.post('http://localhost:3001/drop', { id: e.target.id });
+    }
 }
 
 function RenderingArrayOfObjects() {
