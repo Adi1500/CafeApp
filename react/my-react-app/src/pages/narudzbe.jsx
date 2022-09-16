@@ -4,14 +4,6 @@ import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { IoIosClose } from 'react-icons/io';
 
-function deleteCard(e) {
-    //upit za potvrdu ako slucajno klikne da obrise
-    var answer = window.confirm("Da li želite ukloniti ovu narudžbu?");
-    if (answer) {
-        axios.post('http://localhost:3001/drop', { id: e.target.id });
-    }
-}
-
 function RenderingArrayOfObjects() {
     const [orderList, setOrderList] = useState([]);
     const listOfLists = [];
@@ -19,13 +11,30 @@ function RenderingArrayOfObjects() {
     var indents = [];
     var buttonID = [];
 
+    function deleteCard(e) {
+        //upit za potvrdu ako slucajno klikne da obrise
+        var answer = window.confirm("Da li želite ukloniti ovu narudžbu?");
+        if (answer) {
+            axios.post('http://localhost:3001/drop', { id: e.target.id });
+        }
+    }
+
+    function callAxiosNarudzbe() {
+        axios.get('http://localhost:3001/orders').then((data) => {
+            setOrderList(data.data);
+        });
+        console.log("aaaa")
+    }
+
     useEffect(() => {
-        setInterval(() => {
-            axios.get('http://localhost:3001/orders').then((data) => {
-                setOrderList(data.data);
-            });
-        }, 10000);
+        setTimeout(() => {
+            callAxiosNarudzbe()
+            setInterval(() => {
+                callAxiosNarudzbe()
+            }, 10000);
+        },0)
     }, []);
+
 
     for (let i = 0; i < orderList.length; i++) {
         if (counter.indexOf(orderList[i].broj_stola) > -1) continue;

@@ -2,7 +2,6 @@ import React from 'react';
 import '../skladiste';
 import '../../css/skladiste.css';
 
-
 //ovaj prozorcic kopiran s interneta, ovo je samo da imamo s cim radit
 function Prozorcic() {
 

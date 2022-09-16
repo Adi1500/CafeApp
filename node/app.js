@@ -86,6 +86,14 @@ app.post('/', (req, res) => {
     res.redirect('back');
 });
 
+app.post('/removeStorage', (req, res) => {
+    var sql = 'DELETE FROM skladiste WHERE ime_proizvoda = "'+ req.body.id+'"'
+    console.log(sql);
+    con.query(sql, function (err, result) {
+        if (err) throw err;
+    });
+})
+
 // narudzbe.jsx, ukloni narudzbu tj. karticu
 app.post('/drop', (req, res) => {
     var sql = 'DELETE FROM narudzbe WHERE broj_stola="' + req.body.id + '";';
