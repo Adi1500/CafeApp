@@ -10,10 +10,10 @@ app.use(cors());
 
 // connection
 var con = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "test"
+    host: 'localhost',
+    user: 'root',
+    password: 'root',
+    database: 'test',
 });
 
 app.use(express.static('public'));
@@ -55,14 +55,13 @@ app.get('/orders', (req, res) => {
 
 //request za skladiste.jsx, sta ce izbacit na onom bloku
 app.get('/storage', (req, res) => {
-    var title = req.query.title
-    var sql = 'SELECT * FROM skladiste WHERE skupina="'+title+'"'
-    con.query(sql, function(err, result) {
+    var title = req.query.title;
+    var sql = 'SELECT * FROM skladiste WHERE skupina="' + title + '"';
+    con.query(sql, function (err, result) {
         if (err) throw err;
-        else res.send(result)
-    })
-
-})
+        else res.send(result);
+    });
+});
 
 // mysql
 // gostijs.js posalje u bazu narudzbe od gostiju
@@ -87,12 +86,13 @@ app.post('/', (req, res) => {
 });
 
 app.post('/removeStorage', (req, res) => {
-    var sql = 'DELETE FROM skladiste WHERE ime_proizvoda = "'+ req.body.id+'"'
+    var sql =
+        'DELETE FROM skladiste WHERE ime_proizvoda = "' + req.body.id + '"';
     console.log(sql);
     con.query(sql, function (err, result) {
         if (err) throw err;
     });
-})
+});
 
 // narudzbe.jsx, ukloni narudzbu tj. karticu
 app.post('/drop', (req, res) => {
@@ -105,17 +105,50 @@ app.post('/drop', (req, res) => {
 
 // prozorcic.jsx, posalje u bazu novi proizvod
 app.post('/storeData', (req, res) => {
-    var name = req.body.name
-    var price = req.body.price
-    var quantity = req.body.quantity
-    var description = req.body.description
-    var group = req.body.group
-    var sql = 'INSERT INTO skladiste (ime_proizvoda, kolicina_skladiste, cijena_skladiste, opis_skladiste, skupina) VALUES ("' + name + '", "' + quantity + '", "' + price + '", "' + description + '", "' + group + '")'
-    console.log(name, price, quantity, description)
+    var name = req.body.name;
+    var price = req.body.price;
+    var quantity = req.body.quantity;
+    var description = req.body.description;
+    var group = req.body.group;
+    var sql =
+        'INSERT INTO skladiste (ime_proizvoda, kolicina_skladiste, cijena_skladiste, opis_skladiste, skupina) VALUES ("' +
+        name +
+        '", "' +
+        quantity +
+        '", "' +
+        price +
+        '", "' +
+        description +
+        '", "' +
+        group +
+        '")';
+    console.log(name, price, quantity, description);
     con.query(sql, function (err, result) {
         if (err) throw err;
     });
-})
+});
+
+app.post('/changeData', (req, res) => {
+    var name = req.body.name;
+    var price = req.body.price;
+    var quantity = req.body.quantity;
+    var description = req.body.description;
+    console.log(name, price, quantity, description);
+    var sql =
+        'UPDATE skladiste SET kolicina_skladiste = "' +
+        quantity +
+        '", cijena_skladiste="' +
+        price +
+        '", opis_skladiste="' +
+        description +
+        '" WHERE ime_proizvoda="' +
+        name +
+        '"';
+
+    con.query(sql, function (err, result) {
+        if (err) throw err;
+    });
+});
 
 // listen on port 3001
 app.listen(port, () => console.info(`listening on port ${port}`));
