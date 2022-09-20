@@ -12,7 +12,7 @@ app.use(cors());
 var con = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'root',
+    password: '',
     database: 'test',
 });
 
@@ -56,7 +56,7 @@ app.get('/orders', (req, res) => {
 //request za skladiste.jsx, sta ce izbacit na onom bloku
 app.get('/storage', (req, res) => {
     var title = req.query.title;
-    var sql = 'SELECT * FROM skladiste WHERE skupina="' + title + '"';
+    var sql = 'SELECT * FROM skladiste WHERE podskupina="' + title + '"';
     con.query(sql, function (err, result) {
         if (err) throw err;
         else res.send(result);
@@ -110,8 +110,9 @@ app.post('/storeData', (req, res) => {
     var quantity = req.body.quantity;
     var description = req.body.description;
     var group = req.body.group;
+    var branch = req.body.branch
     var sql =
-        'INSERT INTO skladiste (ime_proizvoda, kolicina_skladiste, cijena_skladiste, opis_skladiste, skupina) VALUES ("' +
+        'INSERT INTO skladiste (ime_proizvoda, kolicina_skladiste, cijena_skladiste, opis_skladiste, skupina, podskupina) VALUES ("' +
         name +
         '", "' +
         quantity +
@@ -121,7 +122,8 @@ app.post('/storeData', (req, res) => {
         description +
         '", "' +
         group +
-        '")';
+        '", "' +
+        branch +'")';
     console.log(name, price, quantity, description);
     con.query(sql, function (err, result) {
         if (err) throw err;
@@ -133,8 +135,75 @@ app.post('/changeData', (req, res) => {
     var price = req.body.price;
     var quantity = req.body.quantity;
     var description = req.body.description;
+    var sql = ""
     console.log(name, price, quantity, description);
-    var sql =
+
+    if(price === '' && description !== '' && quantity !== ''){
+        console.log("1")
+        sql =
+        'UPDATE skladiste SET kolicina_skladiste = "' +
+        quantity +
+        '", opis_skladiste="' +
+        description +
+        '" WHERE ime_proizvoda="' +
+        name +
+        '"';
+    }
+    else if(quantity === '' && description !== '' && price !== ''){
+        console.log("2")
+        sql =
+        'UPDATE skladiste SET cijena_skladiste = "' +
+        price +
+        '", opis_skladiste="' +
+        description +
+        '" WHERE ime_proizvoda="' +
+        name +
+        '"';
+    }
+    else if(description === '' && quantity !== '' && price !== ''){
+        console.log("3")
+        sql =
+        'UPDATE skladiste SET kolicina_skladiste = "' +
+        quantity +
+        '", cijena_skladiste="' +
+        price +
+        '" WHERE ime_proizvoda="' +
+        name +
+        '"';
+    }
+    else if(price === '' && quantity === '' && description !== ''){
+        console.log("4")
+        sql =
+        'UPDATE skladiste SET opis_skladiste="' +
+        description +
+        '" WHERE ime_proizvoda="' +
+        name +
+        '"';
+    }
+    else if(price === '' && description === '' && quantity !== ''){
+        console.log("5")
+        sql =
+        'UPDATE skladiste SET kolicina_skladiste = "' +
+        quantity +
+        '" WHERE ime_proizvoda="' +
+        name +
+        '"';
+    }
+    else if(description === '' && quantity === '' && price !== ''){
+        console.log("6")
+        sql =
+        'UPDATE skladiste SET cijena_skladiste="' +
+        price +
+        '" WHERE ime_proizvoda="' +
+        name +
+        '"';
+    }
+    else if(description === '' && quantity === '' && price === ''){
+        
+    }
+    else{
+        console.log("8")
+        sql =
         'UPDATE skladiste SET kolicina_skladiste = "' +
         quantity +
         '", cijena_skladiste="' +
@@ -144,10 +213,14 @@ app.post('/changeData', (req, res) => {
         '" WHERE ime_proizvoda="' +
         name +
         '"';
+    }
+    console.log(sql)
+    if(sql !== ''){
+        con.query(sql, function (err, result) {
+            if (err) throw err;
+        });
+    }
 
-    con.query(sql, function (err, result) {
-        if (err) throw err;
-    });
 });
 
 // listen on port 3001

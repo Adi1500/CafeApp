@@ -7,7 +7,6 @@
 	position: relative;
     font-size: 22px;
     top: 50%;
-    left: 35%;
 }
 
 .plus-button:after,
@@ -38,18 +37,40 @@
     background-color: rgb(75, 71, 71);
 }
 
-.addBtn {
-    background-color: #e7e7e7;
-    color: black;
-    border: none;
-    position: relative;
-    bottom: 7%;
-    left: 8%;
-    padding: 30px 50px;
-    text-decoration: none;
-    font-size: 30px;
-    border-radius: 12px;
+.edit-button {
+    border: 2px solid rgb(114, 112, 112);
+	background-color: #fff;
+	height: 2.5em;
+	width: 5em;
+	border-radius: 999px;
+	position: relative;
+    font-size: 22px;
+    top: 40%;
+    left: 33%;
 }
+
+.edit-button:hover {
+    cursor: pointer;
+    background-color: rgb(75, 71, 71);
+}
+
+.edit-button-alter {
+    border: 2px solid rgb(114, 112, 112);
+	background-color: yellow;
+	height: 2.5em;
+	width: 5em;
+	border-radius: 999px;
+	position: relative;
+    font-size: 22px;
+    top: 40%;
+    left: 33%;
+}
+
+.edit-button-alter:hover {
+    cursor: pointer;
+    background-color: rgb(75, 71, 71);
+}
+
 .button:hover {
     background-color: #b1b1b1; /* Green */
     color: white;
@@ -190,7 +211,15 @@ h1 {
     cursor: pointer;
 }
 
-.side-panel-items:focus {
+.side-panel-items-alter {
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+    border-bottom: 1px solid #000;
+    text-decoration: none;
+    height: 7%;
+    padding-top: 15px;
+    font-size: 20px;
     color: white;
     background-color: #000;
 }
@@ -248,9 +277,12 @@ h1 {
 
 .main-panel-button {
     margin-left: 20%;
+    position: relative;
+    bottom: 20%;
     text-align: center;
     vertical-align: middle;
-    width: 50%;
+    width: 30%;
+    height: 150%;
     cursor: pointer;
     color: white;
     background-color: #b63535;

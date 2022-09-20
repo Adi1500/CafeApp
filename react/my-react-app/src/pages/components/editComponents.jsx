@@ -28,6 +28,7 @@ function EditComponent({ title }) {
             description: description.value,
         };
         //vrati polja u formi da budu prazna
+        console.log(name, price, quantity, description)
         name.value = '';
         price.value = '';
         quantity.value = '';
@@ -46,16 +47,16 @@ function EditComponent({ title }) {
     callAxiosStorage();
 
     return (
-        <form className="main-panel-form" onSubmit={handleSubmit}>
+        <div className="main-panel-form">
             <div className="main-panel-headers">
-                <span className="main-panel-headers-items">Ime Proizvod a</span>
+                <span className="main-panel-headers-items">Ime Proizvoda</span>
                 <span className="main-panel-headers-items">Količina</span>
                 <span className="main-panel-headers-items">Cijena</span>
                 <span className="main-panel-headers-items">Opis</span>
             </div>
             {editStorageList.map((item) => (
-                <div className="main-panel-items">
-                    <label className="main-panel-subitems">
+                <form className="main-panel-items" onSubmit={handleSubmit}>
+                    <label className="main-panel-subitems" style={{ marginTop: "7%" }}>
                         {item.ime_proizvoda}
                     </label>
                     <input type="hidden" id="name" value={item.ime_proizvoda} />
@@ -63,29 +64,32 @@ function EditComponent({ title }) {
                         type="text"
                         placeholder={item.kolicina_skladiste}
                         id="quantity"
+                        className="main-panel-subitems"
                     />
                     <input
                         type="text"
                         placeholder={item.cijena_skladiste}
                         id="price"
+                        className="main-panel-subitems"
                     />
-                    <input
-                        type="text"
+                    <textarea
                         placeholder={item.opis_skladiste}
+                        rows="3"
                         id="description"
+                        className="main-panel-subitems"
                     />
-                    <button
-                        className="main-panel-button"
-                        id={item.ime_proizvoda}
-                    >
-                        AAAAAAA
-                    </button>
-                </div>
+                    <div>
+                        <button className="main-panel-button" style={{backgroundColor:"#04aa6d"}} id={item.ime_proizvoda} type="submit">
+                            ZAVRŠI
+                        </button>
+                        <button className="main-panel-button" type='reset'>
+                            OTKAŽI
+                        </button>
+                    </div>
+                </form>
             ))}
-            <button type="submit" value={'choad'}>
-                SUBMIT
-            </button>
-        </form>
+
+        </div>
     );
 }
 

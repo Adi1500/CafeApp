@@ -25,7 +25,6 @@ const ComponentConfig = ( { title } ) => {
   }, []);
 
   function removeFromStorage(event) {
-    event.preventDefault()
     var answer = window.confirm("Da li želite ukloniti ovu narudžbu?");
     if (answer) {
       axios.post('http://localhost:3001/removeStorage', { id: event.target.id })

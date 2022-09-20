@@ -13,19 +13,27 @@ function Prozorcic() {
         document.getElementById('price').value = '';
         document.getElementById('quantity').value = '';
         document.getElementById('description').value = '';
+        window.location.reload()
     }
 
 //kad kliknes dodaj dugme na prozorcicu, pozove se ova funkcija
     const handleSubmit = async (e) => {
       e.preventDefault();
       const { name, price, quantity, description, group } = e.target.elements;
+      var branch
+      if(group.value === "topli" || group.value === "sokovi" || group.value === "alkohol" || group.value === "ponude" )
+        branch = group.value
+      else{
+        branch = "hrana"
+      }
       //uzima vrijednosti input fieldova
       let details = {
         name: name.value,
         price: price.value,
         quantity: quantity.value,
         description: description.value,
-        group: group.value
+        group: group.value,
+        branch: branch
       };
       //vrati polja u formi da budu prazna
       name.value = ''
