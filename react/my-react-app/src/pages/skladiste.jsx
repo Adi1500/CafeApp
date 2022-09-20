@@ -26,8 +26,12 @@ function Skl() {
     
     useEffect(() => {
         var data = window.localStorage.getItem('state')
-        setState(JSON.parse(data)) 
-        document.getElementById(JSON.parse(data)).className = "side-panel-items-alter"
+        if(data !== null ){
+            setState(JSON.parse(data)) 
+            document.getElementById(JSON.parse(data)).className = "side-panel-items-alter"
+        }
+        else 
+            document.getElementById("tn").className = "side-panel-items-alter"
     },[])
     
     function changeActive(e) {
@@ -56,7 +60,7 @@ function Skl() {
                 <div id="page-mask"></div>
                 <Prozorcic />
                 <div className='side-panel' >
-                    <span onClick={changeActive} className='side-panel-items' id='tn' tabIndex='0'><FiCoffee/> Topli napici</span>
+                    <span onClick={changeActive} className='side-panel-items-alter' id='tn' tabIndex='0'><FiCoffee/> Topli napici</span>
                     <span onClick={changeActive} className='side-panel-items' id='sok' tabIndex='0'><MdOutlineLocalDrink/> Sokovi</span>
                     <span onClick={changeActive} className='side-panel-items' id='alc' tabIndex='0'><BiDrink/> Alkohol</span>
                     <span onClick={changeActive} className='side-panel-items' id='hra' tabIndex='0'><FaHamburger/> Hrana</span>
