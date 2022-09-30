@@ -2,17 +2,25 @@ import './css/App.css';
 import { NavLink, Routes, Route } from 'react-router-dom';
 import Nar from './pages/narudzbe.jsx';
 import Skl from './pages/skladiste.jsx';
+import Gosti from './pages/gosti';
 import { FaBox } from 'react-icons/fa';
 import { FaGlassMartiniAlt } from 'react-icons/fa';
 import React from 'react';
 
 function App() {
-    return (
-        <div className="App" id='almir'>
-            <Navigation />
+    if(window.location.pathname === "/" || window.location.pathname === "/about"){
+        return (
+            <div className="App" id='almir'>
+                <Navigation />
+                <Main />
+            </div>
+        );
+    }
+    else return (
+        <div className='myreact-reset' id='almir'>
             <Main />
         </div>
-    );
+    )
 }
 
 const Navigation = () => (
@@ -38,6 +46,7 @@ const Main = () => (
     <Routes>
         <Route exact path="/" element={<Nar />}></Route>
         <Route exact path="/about" element={<Skl />}></Route>
+        <Route exact path="/gosti" element={<Gosti />}></Route>
     </Routes>
 );
 

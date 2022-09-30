@@ -4,6 +4,7 @@ const app = express();
 const port = 3001;
 const bodyParser = require('body-parser');
 const mysql = require('mysql');
+const axios = require('axios');
 const cors = require('cors');
 
 app.use(cors());
@@ -53,6 +54,15 @@ app.get('/orders', (req, res) => {
     });
 });
 
+app.get('/cjenovnik', (req,res) => {
+    console.log("radi")
+    var sql = 'SELECT * FROM skladiste'
+    con.query(sql, function(err, result) {
+        if (err) throw err;
+        else res.send(result)
+    })
+})
+
 //request za skladiste.jsx, sta ce izbacit na onom bloku
 app.get('/storage', (req, res) => {
     var title = req.query.title;
@@ -92,6 +102,34 @@ app.post('/removeStorage', (req, res) => {
     con.query(sql, function (err, result) {
         if (err) throw err;
     });
+});
+
+app.post('/gostiNar', (req, res) => {
+    console.log(req.body.cart)
+    for (var i = 0; i < req.body.cart.length; i++) {
+        console.log(req.body.cart.length);
+        var sql =
+            'INSERT INTO narudzbe (ime_narudzbe, cijena, kolicina, broj_stola) VALUES ("' +
+            req.body.cart[i].ime_proizvoda +
+            '", "' +
+            req.body.cart[i].cijena_skladiste +
+            '", "' +
+            req.body.cart[i].amount +
+            '" , "' +
+            req.body.brs +
+            '")';
+        con.query(sql, function (err, result) {
+            if (err) throw err;
+        });
+    }
+    for (var i = 0; i < req.body.cart.length; i++) {
+        console.log(req.body.cart.length);
+        var sql =
+            'UPDATE skladiste SET kolicina_skladiste = "'+ parseInt(req.body.cart[i].kolicina_skladiste - req.body.cart[i].amount) +'" WHERE ime_proizvoda = "'+ req.body.cart[i].ime_proizvoda +'"';
+        con.query(sql, function (err, result) {
+            if (err) throw err;
+        });
+    }
 });
 
 // narudzbe.jsx, ukloni narudzbu tj. karticu

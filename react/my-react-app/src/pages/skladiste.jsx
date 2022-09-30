@@ -60,7 +60,7 @@ function Skl() {
                 <div id="page-mask"></div>
                 <Prozorcic />
                 <div className='side-panel' >
-                    <span onClick={changeActive} className='side-panel-items-alter' id='tn' tabIndex='0'><FiCoffee/> Topli napici</span>
+                    <span onClick={changeActive} className='side-panel-items' id='tn' tabIndex='0'><FiCoffee/> Topli napici</span>
                     <span onClick={changeActive} className='side-panel-items' id='sok' tabIndex='0'><MdOutlineLocalDrink/> Sokovi</span>
                     <span onClick={changeActive} className='side-panel-items' id='alc' tabIndex='0'><BiDrink/> Alkohol</span>
                     <span onClick={changeActive} className='side-panel-items' id='hra' tabIndex='0'><FaHamburger/> Hrana</span>
@@ -73,13 +73,13 @@ function Skl() {
                     {!editing && state === "sok" && <ComponentConfig title={'sokovi'}/>}
                     {!editing && state === "alc" && <ComponentConfig title={'alkohol'}/>}
                     {!editing && state === "hra" && <ComponentConfig title={'hrana'}/>}
-                    {!editing && state === "pp" && <ComponentConfig title={'pounde'}/>}
+                    {!editing && state === "pp" && <ComponentConfig title={'ponude'}/>}
 
                     {editing && state === 'tn' && <EditComponent title={'topli'}/>}
                     {editing && state === 'sok' && <EditComponent title={'sokovi'}/>}
                     {editing && state === 'alc' && <EditComponent title={'alkohol'}/>}
                     {editing && state === 'hra' && <EditComponent title={'hrana'}/>}
-                    {editing && state === 'pp' && <EditComponent title={'pounde'}/>}
+                    {editing && state === 'pp' && <EditComponent title={'ponude'}/>}
                 </div>
             </div>
         </div>

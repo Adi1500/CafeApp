@@ -1,5 +1,13 @@
 var br = 0;
 
+fetch('http://localhost:3001/cjenovnik')
+  .then((response) => {
+    return response.json();
+  })
+  .then((myJson) => {
+    console.log(myJson);
+  });
+
 if(document.readyState == 'loading'){
     document.addEventListener('DOMContentLoaded', ready)
 }
@@ -92,7 +100,7 @@ function addItemToCart(title, price){
           alert('Vec postoji')
           return 
       }
-  }
+    }
     var cartRowContents = `
         <div class="cart-item cart-column">
             <span class="cart-item-title">${title}</span>
@@ -231,3 +239,30 @@ function getRandomColor() {
     }
     return color;
   }
+
+function getMenu() {
+  console.log(br);
+    var cartRow = document.createElement('div')
+    cartRow.classList.add('cart-row')
+    var cartItems = document.getElementsByClassName('cart-items')[0]
+    var cartItemNames = cartItems.getElementsByClassName('cart-item-title')
+    for (var i = 0; i < cartItemNames.length; i++){
+        if(cartItemNames[i].innerText == title){
+            alert('Vec postoji')
+            return 
+        }
+    }
+    var cartRowContents = `
+        <div class="cart-item cart-column">
+            <span class="cart-item-title">${title}</span>
+        </div>
+        <span class="cart-price cart-column">${price}</span>
+        <div class="cart-quantity cart-column">
+            <input class="cart-quantity-input" type="number" value="1" id="${br}">
+            <button class="btn btn-danger" type="button">UKLONI</button>
+        </div>`
+    cartRow.innerHTML = cartRowContents
+    cartItems.append(cartRow)
+    cartRow.getElementsByClassName('btn-danger')[0].addEventListener('click',removeCartItem)
+    cartRow.getElementsByClassName('cart-quantity-input')[0].addEventListener('change',quantityChanged)
+}
