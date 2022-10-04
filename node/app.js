@@ -1,13 +1,15 @@
 // imports
 const express = require('express');
 const app = express();
-const port = 3001;
+var port;
 const bodyParser = require('body-parser');
 const mysql = require('mysql');
 const path = require('path');
 const cors = require('cors');
 
 app.use(cors());
+
+port = process.env.PORT;
 
 // connection
 var con = mysql.createConnection({
@@ -263,4 +265,4 @@ app.post('/changeData', (req, res) => {
 });
 
 // listen on port 3001
-//app.listen(port, () => console.info(`listening on port ${port}`));
+app.listen(port, () => console.info(`listening on port ${port}`));
