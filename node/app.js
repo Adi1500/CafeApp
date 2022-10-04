@@ -4,7 +4,7 @@ const app = express();
 const port = 3001;
 const bodyParser = require('body-parser');
 const mysql = require('mysql');
-const axios = require('axios');
+const path = require('path');
 const cors = require('cors');
 
 app.use(cors());
