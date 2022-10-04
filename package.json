@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Adi1500/novidrug/issues"
   },
-  "homepage": "https://github.com/Adi1500/novidrug#readme"
+  "homepage": "https://github.com/Adi1500/novidrug#readme",
+  "devDependencies": {
+    "concurrently": "^7.4.0"
+  }
 }
