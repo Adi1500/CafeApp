@@ -31,6 +31,7 @@ const ComponentConfig = ( { title } ) => {
     }
   }
 
+
         return (
           <form className='main-panel-form'>
             <div className='main-panel-headers'>
@@ -42,7 +43,7 @@ const ComponentConfig = ( { title } ) => {
             {storageList.map(item => (
               <div className='main-panel-items'>
                 <span className='main-panel-subitems'>{item.ime_proizvoda}</span>
-                <span className='main-panel-subitems'>{item.kolicina_skladiste}</span>
+                <span className='main-panel-subitems'>{item.kolicina_skladiste > 0 && <div style={{color: "green"}}> DOSTUPNO </div>}{item.kolicina_skladiste < 1 && <div style={{color: "red"}}> NEDOSTUPNO </div>}</span>
                 <span className='main-panel-subitems'>{item.cijena_skladiste}</span>
                 <span className='main-panel-subitems'>{item.opis_skladiste}</span>
                 <button className='main-panel-button' id={item.ime_proizvoda} onClick={removeFromStorage}>Ukloni</button>

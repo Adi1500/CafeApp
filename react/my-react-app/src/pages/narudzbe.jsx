@@ -8,6 +8,7 @@ import notification from '../not.wav'
 
 function RenderingArrayOfObjects() {
     const [orderList, setOrderList] = useState([]);
+    const [orderLength, setOrderLength] = useState()
     const listOfLists = [];
     const counter = [];
     var indents = [];
@@ -15,7 +16,7 @@ function RenderingArrayOfObjects() {
     var ukupno = []
     const isDesktopOrLaptop = useMediaQuery({query: '(min-width: 1224px)'})
     const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' })
-    var d = window.localStorage.getItem('bN')
+    var d
     var audio = new Audio(notification)
 
     function deleteCard(e) {
@@ -46,14 +47,31 @@ function RenderingArrayOfObjects() {
         if (counter.indexOf(orderList[i].broj_stola) > -1) continue;
         else counter.push(orderList[i].broj_stola);
     }
+    
+    useEffect(() => {
+        setTimeout(() => {
+            d = window.localStorage.getItem('bN')
+            if(d !== null )
+                setOrderLength(JSON.parse(d)) 
+            else 
+                setOrderLength("0")
+            setInterval(() => {
+                d = window.localStorage.getItem('bN')
+                if(d !== null )
+                    setOrderLength(JSON.parse(d)) 
+                else 
+                    setOrderLength("0")
+            }, 10000);
+        },1000)
+    },[])
 
-    if(counter.length > JSON.parse(d)){
-        console.log(counter.length, JSON.parse(d))
+    if(counter.length > orderLength){
+        console.log(counter.length, orderLength)
         audio.play()
     }
 
     window.localStorage.setItem('bN', JSON.stringify(counter.length))
-    console.log(counter.length, JSON.parse(d))
+    console.log(counter.length, orderLength)
 
     for (let i = 0; i < counter.length; i++) {
         listOfLists[i] = [counter[i]];

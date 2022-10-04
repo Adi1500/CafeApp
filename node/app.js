@@ -122,14 +122,14 @@ app.post('/gostiNar', (req, res) => {
             if (err) throw err;
         });
     }
-    for (var i = 0; i < req.body.cart.length; i++) {
+    /*for (var i = 0; i < req.body.cart.length; i++) {
         console.log(req.body.cart.length);
         var sql =
             'UPDATE skladiste SET kolicina_skladiste = "'+ parseInt(req.body.cart[i].kolicina_skladiste - req.body.cart[i].amount) +'" WHERE ime_proizvoda = "'+ req.body.cart[i].ime_proizvoda +'"';
         con.query(sql, function (err, result) {
             if (err) throw err;
         });
-    }
+    }*/
 });
 
 // narudzbe.jsx, ukloni narudzbu tj. karticu
