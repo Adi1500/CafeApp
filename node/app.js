@@ -1,7 +1,7 @@
 // imports
 const express = require('express');
 const app = express();
-var port;
+const port = 3001;
 const bodyParser = require('body-parser');
 const mysql = require('mysql');
 const path = require('path');
@@ -9,11 +9,9 @@ const cors = require('cors');
 
 app.use(cors());
 
-port = process.env.PORT;
-
 // connection
 var con = mysql.createConnection({
-    host: '192.168.0.20',
+    host: 'localhost',
     user: 'root',
     password: '',
     database: 'test',
