@@ -11,7 +11,7 @@ app.use(cors());
 
 // connection
 var con = mysql.createConnection({
-    host: 'localhost',
+    host: '192.168.0.20',
     user: 'root',
     password: '',
     database: 'test',
@@ -263,4 +263,4 @@ app.post('/changeData', (req, res) => {
 });
 
 // listen on port 3001
-app.listen(port, () => console.info(`listening on port ${port}`));
+//app.listen(port, () => console.info(`listening on port ${port}`));
