@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { GrRevert } from 'react-icons/gr';
+import { TiTickOutline } from 'react-icons/ti';
 
 function EditComponent({ title }) {
     const [editStorageList, setEditStorageList] = useState([]);
@@ -80,10 +82,10 @@ function EditComponent({ title }) {
                     />
                     <div>
                         <button className="main-panel-button" style={{backgroundColor:"#04aa6d"}} id={item.ime_proizvoda} type="submit">
-                            ZAVRŠI
+                            <TiTickOutline size={27}/>
                         </button>
                         <button className="main-panel-button" type='reset'>
-                            OTKAŽI
+                            <GrRevert size={20}/>
                         </button>
                     </div>
                 </form>

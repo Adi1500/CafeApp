@@ -1,9 +1,12 @@
 import React from 'react';
 import '../skladiste';
 import '../../css/skladiste.css';
+import { useMediaQuery } from 'react-responsive'
 
 //ovaj prozorcic kopiran s interneta, ovo je samo da imamo s cim radit
 function Prozorcic() {
+
+    const isPortrait = useMediaQuery({ query: '(orientation: portrait)' })
 
     function closeForm() {
         document.getElementById('myForm').style.display = 'none';
@@ -54,79 +57,154 @@ function Prozorcic() {
       
     };
 
-    return (
-        <div className="form-popup" id="myForm">
-            <form className="form-container" onSubmit={handleSubmit}>
-                <h1>NOVI PROIZVOD</h1>
+    if(!isPortrait)
+        return (
+            <div className="form-popup" style={{height: "auto"}} id="myForm">
+                <form className="form-container" onSubmit={handleSubmit}>
+                    <h1>NOVI PROIZVOD</h1>
 
-                <label htmlFor="name">
-                    <b>Ime Proizvoda</b>
-                </label>
-                <input
-                    type="text"
-                    placeholder="Unesi ime"
-                    name="name"
-                    required
-                    id="name"
-                />
+                    <label htmlFor="name">
+                        <b>Ime Proizvoda</b>
+                    </label>
+                    <input
+                        type="text"
+                        placeholder="Unesi ime"
+                        name="name"
+                        required
+                        id="name"
+                    />
 
-                <label htmlFor="group">
-                    <b>Skupina</b>
-                </label>
-                <select id="group" name="group" required placeholder='Izaberi opciju'>
-                    <option style={{display:"none"}}></option>
-                    <option value="topli">Topli napici</option>
-                    <option value="sokovi">Sokovi</option>
-                    <option value="alkohol">Alkohol</option>
-                    <option value="sendvici">Sendviči</option>
-                    <option value="meso">Meso</option>
-                    <option value="palacinci">Palačinci</option>
-                    <option value="dodaci">Dodaci</option>
-                    <option value="ponude">Posebne ponude</option>
-                </select>
+                    <label htmlFor="group">
+                        <b>Skupina</b>
+                    </label>
+                    <select id="group" name="group" required placeholder='Izaberi opciju'>
+                        <option style={{display:"none"}}></option>
+                        <option value="topli">Topli napici</option>
+                        <option value="sokovi">Sokovi</option>
+                        <option value="alkohol">Alkohol</option>
+                        <option value="sendvici">Sendviči</option>
+                        <option value="meso">Meso</option>
+                        <option value="palacinci">Palačinci</option>
+                        <option value="dodaci">Dodaci</option>
+                        <option value="ponude">Posebne ponude</option>
+                    </select>
 
-                <label htmlFor="price">
-                    <b>Cijena</b>
-                </label>
-                <input
-                    step="0.01"
-                    type="number"
-                    placeholder="Unesi cijenu"
-                    name="price"
-                    required
-                    id="price"
-                />
+                    <label htmlFor="price">
+                        <b>Cijena</b>
+                    </label>
+                    <input
+                        step="0.01"
+                        type="number"
+                        placeholder="Unesi cijenu"
+                        name="price"
+                        required
+                        id="price"
+                    />
 
-                <label htmlFor="quantity">
-                    <b>Količina</b>
-                </label>
-                <input
-                    type="number"
-                    placeholder="Unesi količinu"
-                    name="quantity"
-                    required
-                    id="quantity"
-                />
+                    <label htmlFor="quantity">
+                        <b>Količina</b>
+                    </label>
+                    <input
+                        type="number"
+                        placeholder="Unesi količinu"
+                        name="quantity"
+                        required
+                        id="quantity"
+                    />
 
-                <label htmlFor="description">
-                    <b>Opis</b>
-                </label>
-                <textarea
-                    placeholder='Unesi opis'
-                    name='description'
-                    required
-                    id='description'>
-                </textarea>
+                    <label htmlFor="description">
+                        <b>Opis</b>
+                    </label>
+                    <textarea
+                        placeholder='Unesi opis'
+                        name='description'
+                        required
+                        id='description'>
+                    </textarea>
 
-                <input type="submit" className="btn" value={"DODAJ"}/> 
+                    <input type="submit" className="btn" value={"DODAJ"}/> 
+                    <br></br><br></br>
+                    <button onClick={closeForm} className="dltBtn">
+                        ZATVORI
+                    </button>
+                </form>
 
+            </div>
+        );
+    else 
+        return (
+            <div className="form-popup" style={{width: "70%", left: "18%", height:"auto"}} id="myForm">
+                <form className="form-container" onSubmit={handleSubmit}>
+                    <h1>NOVI PROIZVOD</h1>
 
-            </form>
-            <button onClick={closeForm} className="dltBtn">
-                ZATVORI
-            </button>
-        </div>
-    );
+                    <label htmlFor="name">
+                        <b>Ime Proizvoda</b>
+                    </label>
+                    <input
+                        type="text"
+                        placeholder="Unesi ime"
+                        name="name"
+                        required
+                        id="name"
+                    />
+
+                    <label htmlFor="group">
+                        <b>Skupina</b>
+                    </label>
+                    <select id="group" name="group" required placeholder='Izaberi opciju'>
+                        <option style={{display:"none"}}></option>
+                        <option value="topli">Topli napici</option>
+                        <option value="sokovi">Sokovi</option>
+                        <option value="alkohol">Alkohol</option>
+                        <option value="sendvici">Sendviči</option>
+                        <option value="meso">Meso</option>
+                        <option value="palacinci">Palačinci</option>
+                        <option value="dodaci">Dodaci</option>
+                        <option value="ponude">Posebne ponude</option>
+                    </select>
+
+                    <label htmlFor="price">
+                        <b>Cijena</b>
+                    </label>
+                    <input
+                        step="0.01"
+                        type="number"
+                        placeholder="Unesi cijenu"
+                        name="price"
+                        required
+                        id="price"
+                    />
+
+                    <label htmlFor="quantity">
+                        <b>Količina</b>
+                    </label>
+                    <input
+                        type="number"
+                        placeholder="Unesi količinu"
+                        name="quantity"
+                        required
+                        id="quantity"
+                    />
+
+                    <label htmlFor="description">
+                        <b>Opis</b>
+                    </label>
+                    <textarea
+                        placeholder='Unesi opis'
+                        name='description'
+                        required
+                        id='description'>
+                    </textarea>
+
+                    <input type="submit" className="btn" value={"DODAJ"}/> 
+                    <br></br><br></br>
+                    <button onClick={closeForm} className="dltBtn">
+                        ZATVORI
+                    </button>
+                </form>
+
+            </div>
+        );
 }
 
 export default Prozorcic;

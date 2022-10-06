@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import '../../css/skladiste.css';
+import { ImCross } from 'react-icons/im';
 
 const ComponentConfig = ( { title } ) => {
   const [storageList, setStorageList] = useState([])
@@ -46,7 +47,7 @@ const ComponentConfig = ( { title } ) => {
                 <span className='main-panel-subitems'>{item.kolicina_skladiste > 0 && <div style={{color: "green"}}> DOSTUPNO </div>}{item.kolicina_skladiste < 1 && <div style={{color: "red"}}> NEDOSTUPNO </div>}</span>
                 <span className='main-panel-subitems'>{item.cijena_skladiste}</span>
                 <span className='main-panel-subitems'>{item.opis_skladiste}</span>
-                <button className='main-panel-button' id={item.ime_proizvoda} onClick={removeFromStorage}>Ukloni</button>
+                <button className='main-panel-button' id={item.ime_proizvoda} onClick={removeFromStorage}><ImCross size={20}/></button>
               </div>
             ))}
           </form>
