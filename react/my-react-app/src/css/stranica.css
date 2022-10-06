@@ -4,6 +4,7 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     overflow-y: auto;
+    min-height: 1159px;
 }
 
 .navbar {
