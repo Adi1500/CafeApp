@@ -1,0 +1,20 @@
+CREATE TABLE `narudzbe` (
+  `broj_stola` varchar(100) NOT NULL,
+  `ime_narudzbe` varchar(100) CHARACTER SET latin2 COLLATE latin2_croatian_ci NOT NULL,
+  `cijena` varchar(100) NOT NULL,
+  `kolicina` varchar(100) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=186 DEFAULT CHARSET=latin1
+
+CREATE TABLE `skladiste` (
+  `ime_proizvoda` varchar(100) CHARACTER SET latin2 COLLATE latin2_croatian_ci NOT NULL,
+  `kolicina_skladiste` varchar(100) NOT NULL,
+  `cijena_skladiste` varchar(100) NOT NULL,
+  `opis_skladiste` varchar(300) CHARACTER SET latin2 COLLATE latin2_croatian_ci NOT NULL,
+  `skupina` varchar(100) CHARACTER SET latin2 COLLATE latin2_croatian_ci NOT NULL,
+  `podskupina` varchar(100) CHARACTER SET latin2 COLLATE latin2_croatian_ci NOT NULL,
+  `amount` varchar(100) NOT NULL DEFAULT '1',
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=latin1
