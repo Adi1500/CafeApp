@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 const mysql = require('mysql');
 const path = require('path');
 const cors = require('cors');
+const sound = require("sound-play");
 
 app.use(cors());
 
@@ -22,6 +23,7 @@ app.use('/css', express.static(__dirname + 'public/css'));
 app.use('/js', express.static(__dirname + 'public/js'));
 app.use('/img', express.static(__dirname + 'public/img'));
 app.use(express.static(path.join(__dirname, '../react/my-react-app/build')));
+const filePath = path.join(__dirname, "warning.wav");
 
 // set views
 app.set('views', './views');
@@ -42,6 +44,11 @@ app.get('/about', (req, res) => {
 
 app.get('/skladiste', (req, res) => {
     res.render('skladiste', { text: 'about page' });
+});
+
+process.on('uncaughtException', function(err) {
+    console.log(err)
+    sound.play(filePath)
 });
 
 //request za narudzbe.jsx, kartice
@@ -123,14 +130,14 @@ app.post('/gostiNar', (req, res) => {
             if (err) throw err;
         });
     }
-    /*for (var i = 0; i < req.body.cart.length; i++) {
+    for (var i = 0; i < req.body.cart.length; i++) {
         console.log(req.body.cart.length);
         var sql =
             'UPDATE skladiste SET kolicina_skladiste = "'+ parseInt(req.body.cart[i].kolicina_skladiste - req.body.cart[i].amount) +'" WHERE ime_proizvoda = "'+ req.body.cart[i].ime_proizvoda +'"';
         con.query(sql, function (err, result) {
             if (err) throw err;
         });
-    }*/
+    }
 });
 
 // narudzbe.jsx, ukloni narudzbu tj. karticu
