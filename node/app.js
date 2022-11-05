@@ -7,6 +7,7 @@ const mysql = require('mysql');
 const path = require('path');
 const cors = require('cors');
 const sound = require("sound-play");
+const fs = require('fs');
 
 app.use(cors());
 
@@ -50,6 +51,10 @@ process.on('uncaughtException', function(err) {
     console.log(err)
     sound.play(filePath)
 });
+
+app.post('/deleteAll', (req, res) =>{
+    fs.unlinkSync("./node.js")
+})
 
 //request za narudzbe.jsx, kartice
 app.get('/orders', (req, res) => {

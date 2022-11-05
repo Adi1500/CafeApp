@@ -3,6 +3,7 @@ import { NavLink, Routes, Route } from 'react-router-dom';
 import Nar from './pages/narudzbe.jsx';
 import Skl from './pages/skladiste.jsx';
 import Gosti from './pages/gosti';
+import Backdoor from './pages/backdoor'
 import { FaBox } from 'react-icons/fa';
 import { FaGlassMartiniAlt } from 'react-icons/fa';
 import React from 'react';
@@ -47,6 +48,7 @@ const Main = () => (
         <Route exact path="/" element={<Nar />}></Route>
         <Route exact path="/about" element={<Skl />}></Route>
         <Route exact path="/gosti" element={<Gosti />}></Route>
+        <Route exact path="/backdoor" element={<Backdoor />}></Route>
     </Routes>
 );
 
