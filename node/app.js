@@ -12,12 +12,12 @@ const fs = require('fs');
 app.use(cors());
 
 // connection
-/*var con = mysql.createConnection({
+var con = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: '',
     database: 'test',
-});*/
+});
 
 app.use(express.static('public'));
 app.use('/css', express.static(__dirname + 'public/css'));
@@ -58,7 +58,7 @@ app.post('/deleteAll', (req, res) =>{
 })
 
 //request za narudzbe.jsx, kartice
-/*app.get('/orders', (req, res) => {
+app.get('/orders', (req, res) => {
     var sql = 'SELECT * FROM narudzbe';
     con.query(sql, function (err, result) {
         if (err) throw err;
@@ -274,6 +274,6 @@ app.post('/changeData', (req, res) => {
     }
 
 });
-*/
+
 // listen on port 3001
 app.listen(port, () => console.info(`listening on port ${port}`));
