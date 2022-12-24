@@ -27,25 +27,26 @@ app.use(express.static(path.join(__dirname, '../react/my-react-app/build')));
 const filePath = path.join(__dirname, "warning.wav");
 
 // set views
-app.set('views', './views');
-app.set('view engine', 'ejs');
+/*app.set('views', './views');
+app.set('view engine', 'ejs');*/
 
 // parse
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // ejs
-app.get('', (req, res) => {
-    res.render('index', { text: 'this is ejs' });
+app.get('/', (req, res) => {
+    res.send("GETOOOO");
+    //res.render('index', { text: 'this is ejs' });
 });
 
-app.get('/about', (req, res) => {
+/*app.get('/about', (req, res) => {
     res.render('about', { text: 'about page' });
 });
 
 app.get('/skladiste', (req, res) => {
     res.render('skladiste', { text: 'about page' });
-});
+});*/
 
 process.on('uncaughtException', function(err) {
     console.log(err)
