@@ -46,7 +46,9 @@ function Prozorcic() {
       group.value = ''
       alert("dodano")
       //posalje zahtjev node-u sa ovim podacima
-      let response = await fetch("http://"+window.location.hostname+":3001/storeData", {
+      
+      let response = await fetch("https://novidrug.vercel.app/storeData", {
+      //let response = await fetch("http://"+window.location.hostname+":3001/storeData", {
         method: "POST",
         headers: {
           "Content-Type": "application/json;charset=utf-8",
