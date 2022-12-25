@@ -134,6 +134,7 @@ app.post('/gostiNar', (req, res) => {
             '")';
         con.query(sql, function (err, result) {
             if (err) throw err;
+            else res.send(result + "1");
         });
     }
     for (var i = 0; i < req.body.cart.length; i++) {
@@ -142,6 +143,7 @@ app.post('/gostiNar', (req, res) => {
             'UPDATE skladiste SET kolicina_skladiste = "'+ parseInt(req.body.cart[i].kolicina_skladiste - req.body.cart[i].amount) +'" WHERE ime_proizvoda = "'+ req.body.cart[i].ime_proizvoda +'"';
         con.query(sql, function (err, result) {
             if (err) throw err;
+            else res.send(result + "2");
         });
     }
 });
