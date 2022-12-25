@@ -13,10 +13,10 @@ app.use(cors());
 
 // connection
 var con = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'test',
+    host: 'sql7.freemysqlhosting.net',
+    user: 'sql7586424',
+    password: 'CkASV9xSkK',
+    database: 'sql7586424',
 });
 
 app.use(express.static('public'));
