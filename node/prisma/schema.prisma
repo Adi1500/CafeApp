@@ -1,0 +1,30 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Narudzbe{
+  id Int @id @default(autoincrement())
+  broj_stola Int
+  ime String
+  cijena Float
+  kolicina Int
+}
+
+model Skladiste{
+  id Int @id @default(autoincrement())
+  ime String
+  cijena Float
+  kolicina Float
+  skupina String
+  podskupina String
+  opis String
+  amount Int @default(1)
+}

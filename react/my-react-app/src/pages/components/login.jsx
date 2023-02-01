@@ -37,6 +37,8 @@ export default function Login() {
             username,
             password
         });  
+        window.location.reload();
+        
   }
 
   return(
