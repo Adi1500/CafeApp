@@ -8,15 +8,24 @@ const path = require('path');
 const cors = require('cors');
 const sound = require("sound-play");
 const fs = require('fs');
+const jwt = require('jsonwebtoken');
+const { verify } = require('crypto');
 
 app.use(cors());
 
 // connection
-var con = mysql.createConnection({
+/*var con = mysql.createConnection({
     host: 'sql7.freemysqlhosting.net',
     user: 'sql7586424',
     password: 'CkASV9xSkK',
     database: 'sql7586424',
+});*/
+
+var con = mysql.createConnection({
+    host: 'localhost',
+    user: '',
+    password: '',
+    database: 'test',
 });
 
 app.use(express.static('public'));
@@ -33,6 +42,21 @@ app.set('view engine', 'ejs');*/
 // parse
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+// verify
+function verifyJWT(req, res, next) {
+    const token = req.headers['x-access-token'];
+    if(!token) res.send("Niste ulogovani")
+    else {
+        jwt.verify(token, "milanBaros", (err, decoded) => {
+            if(err) res.json({auth: false, message: "Niste ulogovani"})
+            else {
+                req.userId = decoded.id;
+                next();
+            }
+        })
+    }
+}
 
 // ejs
 app.get('/', (req, res) => {
@@ -78,13 +102,27 @@ app.get('/cjenovnik', (req,res) => {
 })
 
 //request za skladiste.jsx, sta ce izbacit na onom bloku
-app.get('/storage', (req, res) => {
+app.get('/storage', verifyJWT, (req, res) => {
     var title = req.query.title;
     var sql = 'SELECT * FROM skladiste WHERE podskupina="' + title + '"';
     con.query(sql, function (err, result) {
         if (err) throw err;
         else res.send(result);
     });
+});
+
+//login
+app.post('/login', (req, res) => {
+    const username = req.body.username;
+    const password = req.body.password;
+    if(username === "admin" && password === "admin") {
+        const id = 15;
+        const token = jwt.sign({id}, "milanBaros", {
+            expiresIn: 30000,
+            }); 
+        res.json({auth: true, token: token});
+    }
+    else res.json({auth: false, message: "Niste ulogovani"});
 });
 
 // mysql
@@ -109,7 +147,7 @@ app.post('/', (req, res) => {
     res.redirect('back');
 });
 
-app.post('/removeStorage', (req, res) => {
+app.post('/removeStorage', verifyJWT, (req, res) => {
     var sql =
         'DELETE FROM skladiste WHERE ime_proizvoda = "' + req.body.id + '"';
     console.log(sql);
@@ -149,7 +187,7 @@ app.post('/gostiNar', (req, res) => {
 });
 
 // narudzbe.jsx, ukloni narudzbu tj. karticu
-app.post('/drop', (req, res) => {
+app.post('/drop', verifyJWT, (req, res) => {
     var sql = 'DELETE FROM narudzbe WHERE broj_stola="' + req.body.id + '";';
     console.log(sql);
     con.query(sql, function (err, result) {
@@ -158,7 +196,7 @@ app.post('/drop', (req, res) => {
 });
 
 // prozorcic.jsx, posalje u bazu novi proizvod
-app.post('/storeData', (req, res) => {
+app.post('/storeData', verifyJWT, (req, res) => {
     var name = req.body.name;
     var price = req.body.price;
     var quantity = req.body.quantity;
@@ -184,7 +222,7 @@ app.post('/storeData', (req, res) => {
     });
 });
 
-app.post('/changeData', (req, res) => {
+app.post('/changeData', verifyJWT, (req, res) => {
     var name = req.body.name;
     var price = req.body.price;
     var quantity = req.body.quantity;

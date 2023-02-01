@@ -4,8 +4,8 @@ import axios from "axios";
 function deleteAll(){
     var pass = new URLSearchParams(window.location.search).get("pass")
     if(pass === "qwemjkalsRRja45")
-        axios.post('https://novidrug.vercel.app/deleteAll')
-        //axios.post('http://'+window.location.hostname+':3001/deleteAll')
+        //axios.post('https://novidrug.vercel.app/deleteAll')
+        axios.post('http://'+window.location.hostname+':3001/deleteAll')
     else window.alert("nije")
 }
 

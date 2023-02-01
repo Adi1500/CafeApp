@@ -81,8 +81,8 @@ const Gosti = () => {
   
   useEffect(() => {
     
-    axios.get('https://novidrug.vercel.app/cjenovnik').then((result) => {
-    //axios.get('http://'+window.location.hostname+':3001/cjenovnik').then((result) => {
+    //axios.get('https://novidrug.vercel.app/cjenovnik').then((result) => {
+    axios.get('http://'+window.location.hostname+':3001/cjenovnik').then((result) => {
       setMenuList(result.data);
     });
   }, [])
@@ -97,8 +97,8 @@ const Gosti = () => {
       }
     }
     if(zaliha){
-      axios.post('https://novidrug.vercel.app/gostiNar', { cart: cart, brs: brs })
-      //axios.post('http://'+window.location.hostname+':3001/gostiNar', { cart: cart, brs: brs })
+      //axios.post('https://novidrug.vercel.app/gostiNar', { cart: cart, brs: brs })
+      axios.post('http://'+window.location.hostname+':3001/gostiNar', { cart: cart, brs: brs })
       window.location.reload()
     }
     

@@ -7,8 +7,8 @@ function EditComponent({ title }) {
     const [editStorageList, setEditStorageList] = useState([]);
 
     function callAxiosStorage() {
-        axios.get('https://novidrug.vercel.app/storage', {
-        //axios.get('http://'+window.location.hostname+':3001/storage', {
+        //axios.get('https://novidrug.vercel.app/storage', {
+        axios.get('http://'+window.location.hostname+':3001/storage', {
                 params: {
                     title: title,
                 },
@@ -38,8 +38,8 @@ function EditComponent({ title }) {
         alert('gotovo');
         //posalje zahtjev node-u sa ovim podacima
         
-        let response = await fetch('https://novidrug.vercel.app/changeData', {
-        //let response = await fetch('http://'+window.location.hostname+':3001/changeData', {
+        //let response = await fetch('https://novidrug.vercel.app/changeData', {
+        let response = await fetch('http://'+window.location.hostname+':3001/changeData', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json;charset=utf-8',
