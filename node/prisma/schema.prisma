@@ -7,7 +7,7 @@ generator client {
 
 datasource db {
   provider = "mysql"
-  url      = env("DATABASE_URL")
+  url      = "mysql://h7pybv8wyd6annchcdg1:pscale_pw_RCHDIr90ExxAd9ryxMvnXIABLU6ooXaw9v9cLuDHU4n@eu-central.connect.psdb.cloud/caffee-database?sslaccept=strict"
 }
 
 model Narudzbe{
