@@ -40,15 +40,16 @@ function RenderingArrayOfObjects() {
     var answer = window.confirm("Da li želite ukloniti ovu narudžbu?");
     if (answer) {
       console.log(e.target.id);
-      axios.post("http://localhost:3001/drop", { id: e.target.id, headers: {"x-access-token":localStorage.getItem('token')} });
+      axios.post("https://novidrug.vercel.app/drop", {
+      /*axios.post("http://localhost:3001/drop", {*/ id: e.target.id, headers: {"x-access-token":localStorage.getItem('token')} });
       //axios.post('http://'+window.location.hostname+':3001/drop', { id: e.target.id });
       window.location.reload();
     }
   }
 
     function callAxiosNarudzbe() {
-        //axios.get('https://novidrug.vercel.app/orders').then((data) => {
-        axios.get('http://'+window.location.hostname+':3001/orders', {headers: {"x-access-token":localStorage.getItem('token')}}).then((data) => {
+        axios.get('https://novidrug.vercel.app/orders'
+        /*axios.get('http://'+window.location.hostname+':3001/orders'*/, {headers: {"x-access-token":localStorage.getItem('token')}}).then((data) => {
             setOrderList(data.data);
         });
     }

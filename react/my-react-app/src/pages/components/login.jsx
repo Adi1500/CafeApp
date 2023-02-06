@@ -10,8 +10,8 @@ export default function Login() {
   const [loginStatus, setLoginStatus] = useState(false);
 
     async function loginUser(credentials) {
-    //return fetch('https://novidrug.vercel.app/login', {
-    return fetch('http://'+window.location.hostname+':3001/login', {
+    return fetch('https://novidrug.vercel.app/login', {
+    //return fetch('http://'+window.location.hostname+':3001/login', {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json'

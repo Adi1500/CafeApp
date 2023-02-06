@@ -65,7 +65,8 @@ function Prozorcic() {
     });
     */
     await axios
-      .post("http://localhost:3001/storeData", {
+      //.post("http://localhost:3001/storeData", {
+      .post("https://novidrug.vercel.app/storeData", {
         name: name.value,
         price: price.value,
         quantity: quantity.value,
