@@ -6,8 +6,8 @@
 	border-radius: 999px;
 	position: relative;
     font-size: 22px;
-    top: 45%;
-    left: 34%;
+    top: 37%;
+    left: 7%;
 }
 
 .plus-button:after,
@@ -46,8 +46,8 @@
 	border-radius: 999px;
 	position: relative;
     font-size: 22px;
-    top: 40%;
-    left: 33%;
+    top: 35%;
+    left: 7%;
 }
 
 .edit-button:hover {
@@ -63,8 +63,8 @@
 	border-radius: 999px;
 	position: relative;
     font-size: 22px;
-    top: 40%;
-    left: 33%;
+    top: 35%;
+    left: 7%;
 }
 
 .edit-button-alter:hover {
@@ -181,6 +181,7 @@
     position: relative;
     margin-bottom: 5%;
     margin-top: 5%;
+    margin-left: 0%;
 }
 
 h1 {
@@ -276,6 +277,7 @@ h1 {
 }
 
 .main-panel-subitems {
+    margin-top: 9%;
     margin-left: 20%;
 }
 

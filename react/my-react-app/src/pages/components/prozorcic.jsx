@@ -72,6 +72,9 @@ function Prozorcic() {
         description: description.value,
         group: group.value,
         branch: branch,
+        headers:{
+          "x-access-token": localStorage.getItem("token")
+        }
       })
       .then((res) => {
         console.log(res.data);
@@ -87,9 +90,9 @@ function Prozorcic() {
     return (
       <div className="form-popup" style={{ height: "auto" }} id="myForm">
         <form className="form-container" onSubmit={handleSubmit}>
-          <h1>NOVI PROIZVOD</h1>
+          <h1 style={{marginLeft: "25%"}}>NOVI PROIZVOD</h1>
 
-          <label htmlFor="name">
+          <label htmlFor="name" >
             <b>Ime Proizvoda</b>
           </label>
           <input

@@ -24,7 +24,7 @@ export default function Login() {
             }
             else{
                 setLoginStatus(true);
-                localStorage.setItem('token', data.token);
+                localStorage.setItem('token', data.token );
                 //setToken(data.token)
             }
         })

@@ -13,6 +13,9 @@ function EditComponent({ title }) {
         params: {
           title: title,
         },
+        headers: {
+          "x-access-token": localStorage.getItem("token"),
+        },
       })
       .then((data) => {
         console.log(data.data);
@@ -39,11 +42,12 @@ function EditComponent({ title }) {
     alert("gotovo");
     //posalje zahtjev node-u sa ovim podacima
 
-    let response = await fetch("https://novidrug.vercel.app/changeData", {
-      //let response = await fetch('http://'+window.location.hostname+':3001/changeData', {
+    //let response = await fetch("https://novidrug.vercel.app/changeData", {
+      let response = await fetch('http://'+window.location.hostname+':3001/changeData', {
       method: "POST",
       headers: {
         "Content-Type": "application/json;charset=utf-8",
+        "x-access-token": localStorage.getItem("token"),
       },
       body: JSON.stringify(details),
     });
@@ -62,32 +66,35 @@ function EditComponent({ title }) {
       {editStorageList.map((item) => (
         <form className="main-panel-items" onSubmit={handleSubmit}>
           <label className="main-panel-subitems" style={{ marginTop: "7%" }}>
-            {item.ime_proizvoda}
+            {item.ime}
           </label>
-          <input type="hidden" id="name" value={item.ime_proizvoda} />
+          <input type="hidden" id="name" value={item.id} />
           <input
             type="text"
-            placeholder={item.kolicina_skladiste}
+            placeholder={item.kolicina}
             id="quantity"
             className="main-panel-subitems"
+            style={{marginTop: "1%", marginBottom: "20%"}}
           />
           <input
             type="text"
-            placeholder={item.cijena_skladiste}
+            placeholder={item.cijena}
             id="price"
             className="main-panel-subitems"
+            style={{marginTop: "1%", marginBottom: "20%"}}
           />
           <textarea
-            placeholder={item.opis_skladiste}
+            placeholder={item.opis}
             rows="3"
             id="description"
             className="main-panel-subitems"
+            style={{marginTop: "1%", marginBottom: "20%"}}
           />
           <div>
             <button
               className="main-panel-button"
               style={{ backgroundColor: "#04aa6d" }}
-              id={item.ime_proizvoda}
+              id={item.id}
               type="submit"
             >
               <TiTickOutline size={27} />

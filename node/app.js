@@ -52,7 +52,9 @@ function verifyJWT(req, res, next) {
     if(!token) res.send("Niste ulogovani")
     else {
         jwt.verify(token, "milanBaros", (err, decoded) => {
-            if(err) res.json({auth: false, message: "Niste ulogovani"})
+            if(err){
+              res.json({auth: false, message: "Niste ulogovani"})
+            } 
             else {
                 req.userId = decoded.id;
                 next();
@@ -138,7 +140,7 @@ app.post('/login', (req, res) => {
 
 // mysql
 // gostijs.js posalje u bazu narudzbe od gostiju
-app.post("/", verifyJWT, async (req, res) => {
+app.post("/", async (req, res) => {
   /*
   for (var i = 0; i < req.body.naslov.length; i++) {
     console.log(req.body.naslov.length);
@@ -390,37 +392,37 @@ app.post("/changeData", async (req, res) => {
   if (price === "" && description !== "" && quantity !== "") {
     await prisma.skladiste.update({
       where: {
-        ime: name,
+        id: JSON.parse(name) ,
       },
       data: {
-        kolicina: quantity,
+        kolicina: parseInt(quantity) ,
         opis: description,
       },
     });
   } else if (quantity === "" && description !== "" && price !== "") {
     await prisma.skladiste.update({
       where: {
-        ime: name,
+        id: JSON.parse(name) ,
       },
       data: {
-        cijena: price,
+        cijena: parseFloat(price) ,
         opis: description,
       },
     });
   } else if (description === "" && quantity !== "" && price !== "") {
     await prisma.skladiste.update({
       where: {
-        ime: name,
+        id: JSON.parse(name) ,
       },
       data: {
-        kolicina: quantity,
-        cijena: price,
+        kolicina: parseInt(quantity) ,
+        cijena: parseFloat(price) ,
       },
     });
   } else if (price === "" && quantity === "" && description !== "") {
     await prisma.skladiste.update({
       where: {
-        ime: name,
+        id: JSON.parse(name) ,
       },
       data: {
         opis: description,
@@ -429,40 +431,40 @@ app.post("/changeData", async (req, res) => {
   } else if (price === "" && description === "" && quantity !== "") {
     await prisma.skladiste.update({
       where: {
-        ime: name,
+        id: JSON.parse(name) ,
       },
       data: {
-        kolicina: quantity,
+        kolicina: parseInt(quantity) ,
       },
     });
   } else if (description === "" && quantity === "" && price !== "") {
     await prisma.skladiste.update({
       where: {
-        ime: name,
+        id: JSON.parse(name) ,
       },
       data: {
-        cijena: price,
+        cijena: parseFloat(price) ,
       },
     });
   } else if (description === "" && quantity === "" && price === "") {
     await prisma.skladiste.update({
       where: {
-        ime: name,
+        id: JSON.parse(name) ,
       },
       data: {
-        kolicina: quantity,
-        cijena: price,
+        kolicina: parseInt(quantity) ,
+        cijena: parseFloat(price) ,
         opis: description,
       },
     });
   } else {
     await prisma.skladiste.update({
       where: {
-        ime: name,
+        id: JSON.parse(name) ,
       },
       data: {
-        kolicina: quantity,
-        cijena: price,
+        kolicina: parseInt(quantity) ,
+        cijena: parseFloat(price) ,
         opis: description,
       },
     });

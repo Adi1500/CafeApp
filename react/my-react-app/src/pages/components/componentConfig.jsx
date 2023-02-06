@@ -12,6 +12,9 @@ const ComponentConfig = ({ title }) => {
         params: {
           title: title,
         },
+        headers: {
+          "x-access-token": localStorage.getItem("token"),
+        },
       })
       .then((data) => {
         console.log(data.data);
@@ -48,10 +51,10 @@ const ComponentConfig = ({ title }) => {
         <div className="main-panel-items">
           <span className="main-panel-subitems">{item.ime}</span>
           <span className="main-panel-subitems">
-            {item.kolicina_skladiste > 0 && (
+            {item.kolicina > 0 && (
               <div style={{ color: "green" }}> DOSTUPNO </div>
             )}
-            {item.kolicina_skladiste < 1 && (
+            {item.kolicina < 1 && (
               <div style={{ color: "red" }}> NEDOSTUPNO </div>
             )}
           </span>

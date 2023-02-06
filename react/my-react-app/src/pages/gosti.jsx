@@ -237,7 +237,7 @@ const Gosti = () => {
           {cart.map((item) => (
             <div className="cart-row" key={item.id}>
               <div className="cart-item cart-column">
-                <span className="cart-item-title">{item.ime_proizvoda}</span>
+                <span className="cart-item-title">{item.ime}</span>
               </div>
               <span className="cart-price cart-column">{item.cijena}KM</span>
               <div className="cart-quantity cart-column">
@@ -255,6 +255,7 @@ const Gosti = () => {
                 <button
                   className="btn btn-danger"
                   onClick={() => handleRemove(item.id)}
+                  style={{ marginLeft: "7%", marginBottom: "10%", marginTop: "10%" }}
                 >
                   UKLONI
                 </button>
