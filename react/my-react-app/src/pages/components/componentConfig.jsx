@@ -6,14 +6,15 @@ import { ImCross } from "react-icons/im";
 const ComponentConfig = ({ title }) => {
   const [storageList, setStorageList] = useState([]);
   function callAxiosStorage() {
-    
-    //axios.get('http://'+window.location.hostname+':3001/storage', {
-    axios.get('https://novidrug.vercel.app/storage', {
+    const local = JSON.parse(localStorage.getItem("token"));
+    const token = local.token;
+    axios.get('http://'+window.location.hostname+':3001/storage', {
+    //axios.get('https://novidrug.vercel.app/storage', {
         params: {
           title: title,
         },
         headers: {
-          "x-access-token": localStorage.getItem("token"),
+          "x-access-token": token,
         },
       })
       .then((data) => {
@@ -34,8 +35,8 @@ const ComponentConfig = ({ title }) => {
   function removeFromStorage(event) {
     var answer = window.confirm("Da li želite ukloniti ovu narudžbu?");
     if (answer) {
-      axios.post('https://novidrug.vercel.app/removeStorage', { id: event.target.id })
-      //axios.post('http://'+window.location.hostname+':3001/removeStorage', { id: event.target.id })
+      //axios.post('https://novidrug.vercel.app/removeStorage', { id: event.target.id })
+      axios.post('http://'+window.location.hostname+':3001/removeStorage', { id: event.target.id })
     }
   }
 

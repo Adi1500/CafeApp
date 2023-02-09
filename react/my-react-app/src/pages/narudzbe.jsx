@@ -18,6 +18,8 @@ function RenderingArrayOfObjects() {
   var ukupno = [];
   const isDesktopOrLaptop = useMediaQuery({ query: "(min-width: 1224px)" });
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
+  const local = JSON.parse(localStorage.getItem("token"));
+  const token = local.token;
 
   const [sidebarOpen, setSideBarOpen] = useState(false);
   const handleViewSidebar = () => {
@@ -37,19 +39,18 @@ function RenderingArrayOfObjects() {
 
   function deleteCard(e) {
     //upit za potvrdu ako slucajno klikne da obrise
-    var answer = window.confirm("Da li želite ukloniti ovu narudžbu?");
-    if (answer) {
-      console.log(e.target.id);
-      axios.post("https://novidrug.vercel.app/drop", {
-      /*axios.post("http://localhost:3001/drop", {*/ id: e.target.id, headers: {"x-access-token":localStorage.getItem('token')} });
+    //var answer = window.confirm("Da li želite ukloniti ovu narudžbu?");
+    //if (answer) {
+      //axios.post("https://novidrug.vercel.app/drop", {
+      axios.post("http://localhost:3001/drop", { id: e.target.id}, {headers: {"x-access-token":token} });
       //axios.post('http://'+window.location.hostname+':3001/drop', { id: e.target.id });
       window.location.reload();
-    }
+    //}
   }
 
     function callAxiosNarudzbe() {
-        axios.get('https://novidrug.vercel.app/orders'
-        /*axios.get('http://'+window.location.hostname+':3001/orders'*/, {headers: {"x-access-token":localStorage.getItem('token')}}).then((data) => {
+        //axios.get('https://novidrug.vercel.app/orders'
+        axios.get('http://'+window.location.hostname+':3001/orders', {headers: {"x-access-token":token}}).then((data) => {
             setOrderList(data.data);
         });
     }

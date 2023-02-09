@@ -105,10 +105,10 @@
 
 .opisItems{
     position: relative;
-    font-size: 8px;
+    font-size: 5px;
     word-wrap: break-word;
-    margin-left: 15px;
-    top: 50%;
+    top: 47%;
+    text-align: center;
 }
 
 .details {
@@ -156,7 +156,7 @@
     color: white;
     background-color: #56CCF2;
     border: none;
-    border-radius: .3em;
+    border-radius: .8em;
     font-weight: bold;
     margin-bottom: 15%;
 }

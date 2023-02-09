@@ -79,8 +79,8 @@ const Gosti = () => {
 
   useEffect(() => {
     
-    axios.get('https://novidrug.vercel.app/cjenovnik').then((result) => {
-    //axios.get('http://'+window.location.hostname+':3001/cjenovnik').then((result) => {
+    //axios.get('https://novidrug.vercel.app/cjenovnik').then((result) => {
+    axios.get('http://'+window.location.hostname+':3001/cjenovnik').then((result) => {
       setMenuList(result.data);
     });
   }, []);
@@ -89,13 +89,13 @@ const Gosti = () => {
     console.log(cart);
     for (let i = 0; i < cart.length; i++) {
       if (parseFloat(cart[i].kolicina) - parseFloat(cart[i].amount) < 0) {
-        window.alert("Žao nam je, ali ponestalo nam je " + cart[i].ime + "");
+        window.alert("Žao nam je, ali nemamo toliko " + cart[i].ime + "");
         zaliha = false;
       }
     }
     if(zaliha){
-      axios.post('https://novidrug.vercel.app/gostiNar', { cart: cart, brs: brs })
-      //axios.post('http://'+window.location.hostname+':3001/gostiNar', { cart: cart, brs: brs })
+      //axios.post('https://novidrug.vercel.app/gostiNar', { cart: cart, brs: brs })
+      axios.post('http://'+window.location.hostname+':3001/gostiNar', { cart: cart, brs: brs })
       window.location.reload()
     }
   };

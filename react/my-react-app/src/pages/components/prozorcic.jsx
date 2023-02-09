@@ -52,29 +52,20 @@ function Prozorcic() {
     //vrati polja u formi da budu prazna
 
     alert("dodano");
-    //posalje zahtjev node-u sa ovim podacima
-    //https://novidrug.vercel.app/storeData
-    /*
-    let response = await fetch("http://localhost:3001/storeData ", {
-      //let response = await fetch("http://"+window.location.hostname+":3001/storeData", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json;charset=utf-8",
-      },
-      body: JSON.stringify(details),
-    });
-    */
+    const local = JSON.parse(localStorage.getItem("token"));
+    const token = local.token;
     await axios
-      //.post("http://localhost:3001/storeData", {
-      .post("https://novidrug.vercel.app/storeData", {
+      .post("http://localhost:3001/storeData", {
+      //.post("https://novidrug.vercel.app/storeData", {
         name: name.value,
         price: price.value,
         quantity: quantity.value,
         description: description.value,
         group: group.value,
         branch: branch,
+      }, {
         headers:{
-          "x-access-token": localStorage.getItem("token")
+          "x-access-token": token
         }
       })
       .then((res) => {

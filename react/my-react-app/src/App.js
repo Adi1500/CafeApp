@@ -11,12 +11,24 @@ import React, { useState } from 'react';
 
 function App() {
 
-    const token = localStorage.getItem('token');
+    
 
     if(window.location.pathname === "/" || window.location.pathname === "/about"){
+        const token = localStorage.getItem('token');
+        //const token = local;
         if(!token){
             return (
-                <Login /*setToken={setToken}*/ />
+                <Login />
+            )
+        }
+        const item = JSON.parse(token)
+        const now = new Date();
+        if (now.getTime() > item.expiry) {
+            // If the item is expired, delete the item from storage
+            // and return null
+            localStorage.removeItem('token')
+            return (
+                <Login />
             )
         }
         return (

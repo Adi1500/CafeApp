@@ -54,6 +54,7 @@ function verifyJWT(req, res, next) {
         jwt.verify(token, "milanBaros", (err, decoded) => {
             if(err){
               res.json({auth: false, message: "Niste ulogovani"})
+              console.log(err)
             } 
             else {
                 req.userId = decoded.id;
@@ -131,7 +132,7 @@ app.post('/login', (req, res) => {
     if(username === "admin" && password === "admin") {
         const id = 15;
         const token = jwt.sign({id}, "milanBaros", {
-            expiresIn: 30000,
+            expiresIn: 300000,
             }); 
         res.json({auth: true, token: token});
     }
@@ -173,7 +174,7 @@ app.post("/", async (req, res) => {
   res.redirect("back");
 });
 
-app.post("/removeStorage", async (req, res) => {
+app.post("/removeStorage", verifyJWT, async (req, res) => {
   /*
   var sql = 'DELETE FROM skladiste WHERE ime_proizvoda = "' + req.body.id + '"';
   console.log(sql);
@@ -181,7 +182,7 @@ app.post("/removeStorage", async (req, res) => {
     if (err) throw err;
   });
     */
-  await prisma.skladiste.delete({
+  await prisma.skladiste.deleteMany({
     where: {
       ime: req.body.id,
     },
@@ -246,7 +247,7 @@ app.post("/gostiNar", async (req, res) => {
 });
 
 // narudzbe.jsx, ukloni narudzbu tj. karticu
-app.post("/drop", verifyJWT, async (req, res) => {
+app.post("/drop", verifyJWT,  async (req, res) => {
   /*
   var sql = 'DELETE FROM narudzbe WHERE broj_stola="' + req.body.id + '";';
   console.log(sql);
@@ -254,9 +255,14 @@ app.post("/drop", verifyJWT, async (req, res) => {
     if (err) throw err;
   });
     */
+   //console.log(req.body.id);
+   console.log("a");
+  const result = parseInt(req.body.id);
+  console.log(result);
   await prisma.narudzbe.deleteMany({
     where: {
-      broj_stola: parseInt(req.body.id),
+      broj_stola: result ,
+
     },
   });
 });
