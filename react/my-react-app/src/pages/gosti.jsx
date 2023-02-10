@@ -98,7 +98,9 @@ const Gosti = () => {
       axios.post('http://'+window.location.hostname+':3001/gostiNar', { cart: cart, brs: brs })
       setCart([]);
       setPrice(0);
-      
+      for (let i = 0; i < cart.length; i++) {
+        cart[i].kolicina = parseFloat(cart[i].kolicina) - parseFloat(cart[i].amount);
+      }
     }
   };
 
