@@ -36,7 +36,7 @@ app.use("/css", express.static(__dirname + "public/css"));
 app.use("/js", express.static(__dirname + "public/js"));
 app.use("/img", express.static(__dirname + "public/img"));
 app.use(express.static(path.join(__dirname, "../react/my-react-app/build")));
-const filePath = path.join(__dirname, "warning.wav");
+//const filePath = path.join(__dirname, "warning.wav");
 
 // set views
 /*app.set('views', './views');
@@ -80,7 +80,7 @@ app.get('/skladiste', (req, res) => {
 
 process.on("uncaughtException", function (err) {
   console.log(err);
-  sound.play(filePath);
+  //sound.play(filePath);
 });
 
 app.post("/deleteAll", (req, res) => {
@@ -94,7 +94,7 @@ app.get("/orders", async (req, res) => {
 });
 
 app.get("/cjenovnik", async (req, res) => {
-  console.log("radi");
+  //console.log("radi");
   /*
   var sql = "SELECT * FROM skladiste";
   con.query(sql, function (err, result) {
@@ -224,6 +224,7 @@ app.post("/gostiNar", async (req, res) => {
     });
   }
     */
+   console.log(req.body.cart);
   for (var i = 0; i < req.body.cart.length; i++) {
     await prisma.narudzbe.create({
       data: {
@@ -235,6 +236,7 @@ app.post("/gostiNar", async (req, res) => {
     });
   }
   for (var i = 0; i < req.body.cart.length; i++) {
+    console.log(req.body.cart[i].kolicina - req.body.cart[i].amount)
     await prisma.skladiste.update({
       where: {
         id: req.body.cart[i].id,
@@ -269,7 +271,7 @@ app.post("/drop", verifyJWT,  async (req, res) => {
 
 // prozorcic.jsx, posalje u bazu novi proizvod
 app.post("/storeData", async (req, res) => {
-  console.log("radi");
+  //console.log("radi");
   var name = req.body.name;
   var price = req.body.price;
   var quantity = req.body.quantity;

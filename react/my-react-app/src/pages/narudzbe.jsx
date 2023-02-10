@@ -44,7 +44,7 @@ function RenderingArrayOfObjects() {
       //axios.post("https://novidrug.vercel.app/drop", {
       axios.post("http://localhost:3001/drop", { id: e.target.id}, {headers: {"x-access-token":token} });
       //axios.post('http://'+window.location.hostname+':3001/drop', { id: e.target.id });
-      window.location.reload();
+      //window.location.reload();
     //}
   }
 
@@ -56,13 +56,14 @@ function RenderingArrayOfObjects() {
     }
 
   useEffect(() => {
-    setTimeout(() => {
+    /*setTimeout(() => {
       callAxiosNarudzbe();
       setInterval(() => {
         callAxiosNarudzbe();
       }, 10000);
-    }, 0);
-  }, []);
+    }, 0);*/
+    callAxiosNarudzbe()
+  }, [callAxiosNarudzbe()]);
 
   for (let i = 0; i < orderList.length; i++) {
     if (counter.indexOf(orderList[i].broj_stola) > -1) continue;
@@ -84,7 +85,7 @@ function RenderingArrayOfObjects() {
 
   if (counter.length > orderLength) {
     console.log(counter.length, orderLength);
-    audio.play();
+    //audio.play();
   }
 
   window.localStorage.setItem("bN", JSON.stringify(counter.length));

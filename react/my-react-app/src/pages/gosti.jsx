@@ -96,7 +96,9 @@ const Gosti = () => {
     if(zaliha){
       //axios.post('https://novidrug.vercel.app/gostiNar', { cart: cart, brs: brs })
       axios.post('http://'+window.location.hostname+':3001/gostiNar', { cart: cart, brs: brs })
-      window.location.reload()
+      setCart([]);
+      setPrice(0);
+      
     }
   };
 
