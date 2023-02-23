@@ -20,6 +20,7 @@ function RenderingArrayOfObjects() {
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
   const local = JSON.parse(localStorage.getItem("token"));
   const token = local.token;
+  const [id, setId] = useState();
 
   const [sidebarOpen, setSideBarOpen] = useState(false);
   const handleViewSidebar = () => {
@@ -37,23 +38,38 @@ function RenderingArrayOfObjects() {
   var d;
   var audio = new Audio(notification);
 
-  function deleteCard(e) {
+  async function deleteCard(id) {
     //upit za potvrdu ako slucajno klikne da obrise
     //var answer = window.confirm("Da li želite ukloniti ovu narudžbu?");
     //if (answer) {
-      //axios.post("https://novidrug.vercel.app/drop", {
-      axios.post("http://localhost:3001/drop", { id: e.target.id}, {headers: {"x-access-token":token} });
-      //axios.post('http://'+window.location.hostname+':3001/drop', { id: e.target.id });
-      //window.location.reload();
+    //axios.post("https://novidrug.vercel.app/drop", {
+
+    axios
+      .post(
+        "http://localhost:3001/drop",
+        { id: id },
+        { headers: { "x-access-token": token } }
+      )
+      .then((data) => {
+        console.log(data.data);
+      });
+
+    window.location.reload();
+    //axios.post('http://'+window.location.hostname+':3001/drop', { id: e.target.id });
+    //window.location.reload();
     //}
   }
 
-    function callAxiosNarudzbe() {
-        //axios.get('https://novidrug.vercel.app/orders'
-        axios.get('http://'+window.location.hostname+':3001/orders', {headers: {"x-access-token":token}}).then((data) => {
-            setOrderList(data.data);
-        });
-    }
+  function callAxiosNarudzbe() {
+    //axios.get('https://novidrug.vercel.app/orders'
+    axios
+      .get("http://" + window.location.hostname + ":3001/orders", {
+        headers: { "x-access-token": token },
+      })
+      .then((data) => {
+        setOrderList(data.data);
+      });
+  }
 
   useEffect(() => {
     /*setTimeout(() => {
@@ -62,26 +78,32 @@ function RenderingArrayOfObjects() {
         callAxiosNarudzbe();
       }, 10000);
     }, 0);*/
-    callAxiosNarudzbe()
-  }, [callAxiosNarudzbe()]);
+    callAxiosNarudzbe();
+
+    // Check if the last member of the orderlist has changed
+
+    if (orderList.length > 0) {
+      if (orderList[orderList.length - 1].id !== id) {
+        setId(orderList[orderList.length - 1].id);
+      }
+    }
+  }, [orderList, id]);
 
   for (let i = 0; i < orderList.length; i++) {
     if (counter.indexOf(orderList[i].broj_stola) > -1) continue;
     else counter.push(orderList[i].broj_stola);
   }
 
-  useEffect(() => {
-    setTimeout(() => {
+  const dontknow = () => {
+    d = window.localStorage.getItem("bN");
+    if (d !== null) setOrderLength(JSON.parse(d));
+    else setOrderLength("0");
+    setInterval(() => {
       d = window.localStorage.getItem("bN");
       if (d !== null) setOrderLength(JSON.parse(d));
       else setOrderLength("0");
-      setInterval(() => {
-        d = window.localStorage.getItem("bN");
-        if (d !== null) setOrderLength(JSON.parse(d));
-        else setOrderLength("0");
-      }, 10000);
-    }, 1000);
-  }, []);
+    }, 10000);
+  };
 
   if (counter.length > orderLength) {
     console.log(counter.length, orderLength);
@@ -149,7 +171,34 @@ function RenderingArrayOfObjects() {
   if (isDesktopOrLaptop)
     return (
       <div>
-        <div className="flex-container">{indents}</div>;
+        <div className="flex-container">
+          {orderList.map((item) => {
+            return (
+              <div>
+                <button
+                  onClick={() => deleteCard(item.broj_stola)}
+                  className="btn-close"
+                >
+                  <IoIosClose size={45} id={item.broj_stola} />
+                </button>
+                <h1 style={{ textAlign: "center" }}>
+                  Broj Stola: {item.broj_stola}
+                </h1>
+
+                <div>
+                  {item.kolicina}X {item.ime}&nbsp;&nbsp;
+                  <span className="price-align">
+                    {item.cijena * item.kolicina} KM
+                  </span>
+                </div>
+                <div className="ukupna-cijena">
+                  UKUPNO: {item.cijena * item.kolicina}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+        ;
         <div className={sidebarClass}>
           <div className="square" style={{ top: "3%", left: "7%" }} id={"sdb1"}>
             1
