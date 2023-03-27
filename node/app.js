@@ -7,9 +7,9 @@ const mysql = require("mysql");
 const path = require("path");
 const cors = require("cors");
 const sound = require("sound-play");
-const fs = require('fs');
-const jwt = require('jsonwebtoken');
-const { verify } = require('crypto');
+const fs = require("fs");
+const jwt = require("jsonwebtoken");
+const { verify } = require("crypto");
 const { PrismaClient } = require("@prisma/client");
 
 const prisma = new PrismaClient();
@@ -25,10 +25,10 @@ app.use(cors());
 });*/
 
 var con = mysql.createConnection({
-    host: 'localhost',
-    user: '',
-    password: '',
-    database: 'test',
+  host: "localhost",
+  user: "",
+  password: "",
+  database: "test",
 });
 
 app.use(express.static("public"));
@@ -48,20 +48,19 @@ app.use(bodyParser.json());
 
 // verify
 function verifyJWT(req, res, next) {
-    const token = req.headers['x-access-token'];
-    if(!token) res.send("Niste ulogovani")
-    else {
-        jwt.verify(token, "milanBaros", (err, decoded) => {
-            if(err){
-              res.json({auth: false, message: "Niste ulogovani"})
-              console.log(err)
-            } 
-            else {
-                req.userId = decoded.id;
-                next();
-            }
-        })
-    }
+  const token = req.headers["x-access-token"];
+  if (!token) res.send("Niste ulogovani");
+  else {
+    jwt.verify(token, "milanBaros", (err, decoded) => {
+      if (err) {
+        res.json({ auth: false, message: "Niste ulogovani" });
+        console.log(err);
+      } else {
+        req.userId = decoded.id;
+        next();
+      }
+    });
+  }
 }
 
 // ejs
@@ -126,17 +125,16 @@ app.get("/storage", verifyJWT, async (req, res) => {
 });
 
 //login
-app.post('/login', (req, res) => {
-    const username = req.body.username;
-    const password = req.body.password;
-    if(username === "admin" && password === "admin") {
-        const id = 15;
-        const token = jwt.sign({id}, "milanBaros", {
-            expiresIn: 300000,
-            }); 
-        res.json({auth: true, token: token});
-    }
-    else res.json({auth: false, message: "Niste ulogovani"});
+app.post("/login", (req, res) => {
+  const username = req.body.username;
+  const password = req.body.password;
+  if (username === "admin" && password === "admin") {
+    const id = 15;
+    const token = jwt.sign({ id }, "milanBaros", {
+      expiresIn: 300000,
+    });
+    res.json({ auth: true, token: token });
+  } else res.json({ auth: false, message: "Niste ulogovani" });
 });
 
 // mysql
@@ -224,7 +222,7 @@ app.post("/gostiNar", async (req, res) => {
     });
   }
     */
-   console.log(req.body.cart);
+  console.log(req.body.cart);
   for (var i = 0; i < req.body.cart.length; i++) {
     await prisma.narudzbe.create({
       data: {
@@ -236,7 +234,7 @@ app.post("/gostiNar", async (req, res) => {
     });
   }
   for (var i = 0; i < req.body.cart.length; i++) {
-    console.log(req.body.cart[i].kolicina - req.body.cart[i].amount)
+    console.log(req.body.cart[i].kolicina - req.body.cart[i].amount);
     await prisma.skladiste.update({
       where: {
         id: req.body.cart[i].id,
@@ -249,7 +247,7 @@ app.post("/gostiNar", async (req, res) => {
 });
 
 // narudzbe.jsx, ukloni narudzbu tj. karticu
-app.post("/drop", verifyJWT,  async (req, res) => {
+app.post("/drop", verifyJWT, async (req, res) => {
   /*
   var sql = 'DELETE FROM narudzbe WHERE broj_stola="' + req.body.id + '";';
   console.log(sql);
@@ -257,14 +255,14 @@ app.post("/drop", verifyJWT,  async (req, res) => {
     if (err) throw err;
   });
     */
-   //console.log(req.body.id);
-   console.log("a");
+  //console.log(req.body.id);
+  console.log("a");
   const result = parseInt(req.body.id);
   console.log(result);
+  res.send("radi");
   await prisma.narudzbe.deleteMany({
     where: {
-      broj_stola: result ,
-
+      broj_stola: result,
     },
   });
 });
@@ -400,37 +398,37 @@ app.post("/changeData", async (req, res) => {
   if (price === "" && description !== "" && quantity !== "") {
     await prisma.skladiste.update({
       where: {
-        id: JSON.parse(name) ,
+        id: JSON.parse(name),
       },
       data: {
-        kolicina: parseInt(quantity) ,
+        kolicina: parseInt(quantity),
         opis: description,
       },
     });
   } else if (quantity === "" && description !== "" && price !== "") {
     await prisma.skladiste.update({
       where: {
-        id: JSON.parse(name) ,
+        id: JSON.parse(name),
       },
       data: {
-        cijena: parseFloat(price) ,
+        cijena: parseFloat(price),
         opis: description,
       },
     });
   } else if (description === "" && quantity !== "" && price !== "") {
     await prisma.skladiste.update({
       where: {
-        id: JSON.parse(name) ,
+        id: JSON.parse(name),
       },
       data: {
-        kolicina: parseInt(quantity) ,
-        cijena: parseFloat(price) ,
+        kolicina: parseInt(quantity),
+        cijena: parseFloat(price),
       },
     });
   } else if (price === "" && quantity === "" && description !== "") {
     await prisma.skladiste.update({
       where: {
-        id: JSON.parse(name) ,
+        id: JSON.parse(name),
       },
       data: {
         opis: description,
@@ -439,40 +437,40 @@ app.post("/changeData", async (req, res) => {
   } else if (price === "" && description === "" && quantity !== "") {
     await prisma.skladiste.update({
       where: {
-        id: JSON.parse(name) ,
+        id: JSON.parse(name),
       },
       data: {
-        kolicina: parseInt(quantity) ,
+        kolicina: parseInt(quantity),
       },
     });
   } else if (description === "" && quantity === "" && price !== "") {
     await prisma.skladiste.update({
       where: {
-        id: JSON.parse(name) ,
+        id: JSON.parse(name),
       },
       data: {
-        cijena: parseFloat(price) ,
+        cijena: parseFloat(price),
       },
     });
   } else if (description === "" && quantity === "" && price === "") {
     await prisma.skladiste.update({
       where: {
-        id: JSON.parse(name) ,
+        id: JSON.parse(name),
       },
       data: {
-        kolicina: parseInt(quantity) ,
-        cijena: parseFloat(price) ,
+        kolicina: parseInt(quantity),
+        cijena: parseFloat(price),
         opis: description,
       },
     });
   } else {
     await prisma.skladiste.update({
       where: {
-        id: JSON.parse(name) ,
+        id: JSON.parse(name),
       },
       data: {
-        kolicina: parseInt(quantity) ,
-        cijena: parseFloat(price) ,
+        kolicina: parseInt(quantity),
+        cijena: parseFloat(price),
         opis: description,
       },
     });

@@ -21,6 +21,7 @@ const Nar = () => {
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
   const local = JSON.parse(localStorage.getItem("token"));
   const token = local.token;
+  const [id, setId] = useState();
 
   const [sidebarOpen, setSideBarOpen] = useState(false);
   const handleViewSidebar = () => {
@@ -73,18 +74,16 @@ const Nar = () => {
     else counter.push(orderList[i].broj_stola);
   }
 
-  useEffect(() => {
-    setTimeout(() => {
+  const dontknow = () => {
+    d = window.localStorage.getItem("bN");
+    if (d !== null) setOrderLength(JSON.parse(d));
+    else setOrderLength("0");
+    setInterval(() => {
       d = window.localStorage.getItem("bN");
       if (d !== null) setOrderLength(JSON.parse(d));
       else setOrderLength("0");
-      setInterval(() => {
-        d = window.localStorage.getItem("bN");
-        if (d !== null) setOrderLength(JSON.parse(d));
-        else setOrderLength("0");
-      }, 10000);
-    }, 1000);
-  }, []);
+    }, 10000);
+  };
 
   if (counter.length > orderLength) {
     console.log(counter.length, orderLength);
@@ -152,7 +151,34 @@ const Nar = () => {
   if (isDesktopOrLaptop)
     return (
       <div>
-        <div className="flex-container">{indents}</div>;
+        <div className="flex-container">
+          {orderList.map((item) => {
+            return (
+              <div>
+                <button
+                  onClick={() => deleteCard(item.broj_stola)}
+                  className="btn-close"
+                >
+                  <IoIosClose size={45} id={item.broj_stola} />
+                </button>
+                <h1 style={{ textAlign: "center" }}>
+                  Broj Stola: {item.broj_stola}
+                </h1>
+
+                <div>
+                  {item.kolicina}X {item.ime}&nbsp;&nbsp;
+                  <span className="price-align">
+                    {item.cijena * item.kolicina} KM
+                  </span>
+                </div>
+                <div className="ukupna-cijena">
+                  UKUPNO: {item.cijena * item.kolicina}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+        ;
         <div className={sidebarClass}>
           <div className="square" style={{ top: "3%", left: "7%" }} id={"sdb1"}>
             1
