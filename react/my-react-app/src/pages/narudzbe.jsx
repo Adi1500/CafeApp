@@ -8,7 +8,8 @@ import { useMediaQuery } from "react-responsive";
 import notification from "../not.wav";
 import "../css/sidebar.css";
 
-function RenderingArrayOfObjects() {
+const Nar = () => {
+
   const [orderList, setOrderList] = useState([]);
   const [orderLength, setOrderLength] = useState();
   const listOfLists = [];
@@ -37,33 +38,35 @@ function RenderingArrayOfObjects() {
   var d;
   var audio = new Audio(notification);
 
+  function callAxiosNarudzbe() {
+    //axios.get('https://novidrug.vercel.app/orders'
+    axios.get('http://'+window.location.hostname+':3001/orders', {headers: {"x-access-token":token}}).then((data) => {
+        setOrderList(data.data);
+    });
+  }
+
   function deleteCard(e) {
     //upit za potvrdu ako slucajno klikne da obrise
-    //var answer = window.confirm("Da li želite ukloniti ovu narudžbu?");
-    //if (answer) {
+    var answer = window.confirm("Da li želite ukloniti ovu narudžbu?");
+    if (answer) {
       //axios.post("https://novidrug.vercel.app/drop", {
       axios.post("http://localhost:3001/drop", { id: e.target.id}, {headers: {"x-access-token":token} });
       //axios.post('http://'+window.location.hostname+':3001/drop', { id: e.target.id });
-      //window.location.reload();
-    //}
+      callAxiosNarudzbe();
+      window.location.reload();
+    }
   }
 
-    function callAxiosNarudzbe() {
-        //axios.get('https://novidrug.vercel.app/orders'
-        axios.get('http://'+window.location.hostname+':3001/orders', {headers: {"x-access-token":token}}).then((data) => {
-            setOrderList(data.data);
-        });
-    }
+    
 
   useEffect(() => {
-    /*setTimeout(() => {
+    setTimeout(() => {
       callAxiosNarudzbe();
       setInterval(() => {
         callAxiosNarudzbe();
       }, 10000);
-    }, 0);*/
-    callAxiosNarudzbe()
-  }, [callAxiosNarudzbe()]);
+    }, 0);
+  }, []);
 
   for (let i = 0; i < orderList.length; i++) {
     if (counter.indexOf(orderList[i].broj_stola) > -1) continue;
@@ -838,14 +841,6 @@ function RenderingArrayOfObjects() {
         </div>
       </div>
     );
-}
-
-const Nar = () => {
-  return (
-    <div>
-      <RenderingArrayOfObjects />
-    </div>
-  );
 };
 
 export default Nar;

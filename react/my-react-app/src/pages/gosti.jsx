@@ -17,11 +17,6 @@ import Hrana from "../img/hrana.jpg";
 import Alkohol from "../img/alkohol.jpg";
 import Sok from "../img/sok.jpg";
 import Special from "../img/special.jpg";
-/*import Palacinci from "../img/palacinci.jpg"
-import Salata from "../img/salata.jpg"
-import Meso from "../img/meso.jpg"
-import Dodaci from "../img/dodaci.jpg"
-import Sendvic from "../img/sendvic.jpg"*/
 
 const Gosti = () => {
   const [menuList, setMenuList] = useState([]);
@@ -101,6 +96,7 @@ const Gosti = () => {
       for (let i = 0; i < cart.length; i++) {
         cart[i].kolicina = parseFloat(cart[i].kolicina) - parseFloat(cart[i].amount);
       }
+      console.log("nesto");
     }
   };
 
@@ -122,7 +118,6 @@ const Gosti = () => {
     `}
         </style>
       </Helmet>
-
       <Accordion allowZeroExpanded="true">
         <AccordionItem>
           <AccordionItemHeading>

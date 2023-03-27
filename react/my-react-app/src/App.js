@@ -7,12 +7,9 @@ import Backdoor from './pages/backdoor'
 import Login from './pages/components/login';
 import { FaBox } from 'react-icons/fa';
 import { FaGlassMartiniAlt } from 'react-icons/fa';
-import React, { useState } from 'react';
+import React from 'react';
 
 function App() {
-
-    
-
     if(window.location.pathname === "/" || window.location.pathname === "/about"){
         const token = localStorage.getItem('token');
         //const token = local;
@@ -65,12 +62,12 @@ const Navigation = () => (
 );
 
 const Main = () => (
-    <Routes>
-        <Route exact path="/" element={<Nar />}></Route>
-        <Route exact path="/about" element={<Skl />}></Route>
-        <Route exact path="/gosti" element={<Gosti />}></Route>
-        <Route exact path="/backdoor" element={<Backdoor />}></Route>
-    </Routes>
+        <Routes>
+            <Route exact path="/" element={<Nar/>}></Route>
+            <Route exact path="/about" element={<Skl />}></Route>
+            <Route exact path="/gosti" element={<Gosti/>}></Route>
+            <Route exact path="/backdoor" element={<Backdoor />}></Route>
+        </Routes>
 );
 
 export default App;
